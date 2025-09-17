@@ -23,8 +23,8 @@ struct Product {
     var name: String
     var category: FoodGroup
     var price: Double
-    func info() {
-        print("name: \(name), price: \(price) GEL/kg")
+    var info: String {
+        "name: \(name), price: \(price) GEL/kg"
     }
     var sale: Double   // in %
     var weight: Double
@@ -57,7 +57,7 @@ struct Product {
 }
 
 var someProduct = Product(name: "Watermelon", category: .fruit, price: 2.3, sale: 20, weight: 200, caloryPer100: 320, productStatus: .available)
-someProduct.info()
+print(someProduct.info)
 someProduct.buy(kg: 4)
 someProduct.buy(kg: 4000)
 
