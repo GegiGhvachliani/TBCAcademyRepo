@@ -44,7 +44,7 @@ struct Book: Readable {
     var genre: Genre
     
     func description() {
-        print(" title: \(title)\n author: \(author)\n publication year: \(publicationYear)\n reading level: \(readingLevel)")
+        print(" title: \(title)\n author: \(author)\n publication year: \(publicationYear)\n reading level: \(readingLevel)\n")
     }
     func read() {
         print("გილოცავთ! თქვენ წაიკითხეთ წიგნი")
@@ -186,3 +186,74 @@ person2.borrowedBooks.forEach { print($0.title) }
 print("person named \(person2.name) has taken following books from \(library1.name):")
 person2.borrowedBooks.forEach { print($0.title) }
 
+/*
+9. გააფართოვეთ "Array" ტიპი, სადაც ელემენტი აკმაყოფილებს "Readable" პროტოკოლს
+ (ანუ ამ ექსთენშენი მოცემული მეთოდები ხელმსიაწვდომი იქნება მხოლოდ [Readable] მასივისთვის),
+ შემდეგი მეთოდებით:
+  - "findByAuthor(_ author: String) -> [Readable]" - აბრუნებს ავტორის მიხედვით ნაპოვნ წიგნებს
+  - "oldestBook() -> Readable?" - აბრუნებს ყველაზე ძველ წიგნს
+*/
+extension Array<Readable> {
+    func findByAuthor(_ author: String) -> [Readable] {
+        self.filter { $0.author == author }
+    }
+    func oldestBook() -> Readable? {
+        if self.count == 0 {
+            return nil
+        }
+        var result = self.sorted(by: { $0.publicationYear < $1.publicationYear } )
+        return result[0]
+    }
+}
+/*
+10. შექმენით "EBook" სტრუქტურა, რომელიც დააკმაყოფილებს "Readable" პროტოკოლს და დაამატეთ "fileSize: Double" ფროფერთი.
+  გამოიყენეთ "extension", რომ დაამატოთ "printDetails()" მეთოდი, რომელიც დაბეჭდავს ელექტრონული წიგნის დეტალებს.
+  შექმენით მინიმუმ 2 "EBook" ობიექტი და გამოიძახეთ "printDetails()" მეთოდი თითოეულისთვის.
+*/
+struct EBook: Readable {
+    var genre: Genre
+    var title: String
+    var author: String
+    var publicationYear: Int
+    var readingLevel: ReadingLevel
+    var fileSize: Double
+    func read() {
+        print("გილოცავთ! თქვენ მოუსმინეთ აუდიო წიგნს")
+    }
+}
+extension EBook {
+    func printDetails() {
+        print(" Title: \(title)\n Author: \(author)\n Genre: \(genre)\n publication year: \(publicationYear)\n Appropriate for: \(readingLevel)\n file size is: \(fileSize) \n\n")
+    }
+}
+
+var eBook1 = EBook(genre: .nonFiction, title: "ვეფხისტყაოსანი", author: "Shota Rustaveli", publicationYear: 1150, readingLevel: .intermediate, fileSize: 1.0)
+var eBook2 = EBook(genre: .mystery, title: "ბასკერვილების ძაღლი", author: "არტურ კონან დოილი", publicationYear: 1902, readingLevel: .beginner, fileSize: 0.9)
+eBook1.printDetails()
+eBook2.printDetails()
+
+/*
+11. შექმენით ჯენერიკ ფუნქცია "findMostFrequent<T: Hashable>(_ array: [T]) -> T?",
+ რომელიც იპოვის და დააბრუნებს მასივში ყველაზე ხშირად გამეორებულ ელემენტს.
+ თუ რამდენიმე ელემენტი თანაბრად ხშირად მეორდება, დააბრუნეთ პირველი მათგანი.
+*/
+func findMostFrequent<T: Hashable>(_ array: [T]) -> T? {
+    if array.count == 0 {
+        return nil
+    }
+    var indexOfMostFrequent = 0
+    for (index, element) in array.enumerated() {
+        if array.count(where: { $0 == element }) > indexOfMostFrequent {
+            indexOfMostFrequent = index
+        }
+    }
+    return array[indexOfMostFrequent]
+}
+/*
+12. შექმენით მასივი, რომელიც შეიცავს ყველა წიგნის ავტორს მე-7 დავალებაში შექმნილი ბიბლიოთეკიდან.
+გამოიძახეთ "findMostFrequent" ფუნქცია ამ მასივზე, რათა იპოვოთ ყველაზე პოპულარული ავტორი.
+დაბეჭდეთ შედეგი: "ბიბლიოთეკაში ყველაზე პოპულარული ავტორი არის: [ავტორის სახელი]".
+*/
+var authors = [String]()
+books.forEach { authors.append($0.author) }
+print(findMostFrequent(authors) ?? "array was empty")
