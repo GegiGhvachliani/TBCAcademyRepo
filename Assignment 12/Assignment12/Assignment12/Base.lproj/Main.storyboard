@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Assignment12" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdI-PY-PXI">
-                                <rect key="frame" x="0.0" y="320" width="393" height="532"/>
+                                <rect key="frame" x="0.0" y="329.66666666666669" width="402" height="544.33333333333326"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggn-CH-ery">
-                                        <rect key="frame" x="35" y="402" width="68" height="68"/>
+                                        <rect key="frame" x="34.999999999999993" y="411.99999999999994" width="70.333333333333314" height="70.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ggn-CH-ery" secondAttribute="height" multiplier="1:1" id="wDR-bC-a4t"/>
                                         </constraints>
@@ -35,7 +35,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sv6-ml-PzF">
-                                        <rect key="frame" x="120" y="402" width="68" height="68"/>
+                                        <rect key="frame" x="122.33333333333334" y="411.99999999999994" width="70.333333333333343" height="70.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sv6-ml-PzF" secondAttribute="height" multiplier="1:1" id="j06-h8-De4"/>
                                         </constraints>
@@ -47,7 +47,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f00-IK-yUK">
-                                        <rect key="frame" x="35" y="316" width="68" height="68"/>
+                                        <rect key="frame" x="34.999999999999993" y="323.99999999999994" width="70.333333333333314" height="70"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="1" cornerStyle="capsule">
@@ -56,7 +56,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqX-yf-3Kk">
-                                        <rect key="frame" x="120" y="316" width="68" height="68"/>
+                                        <rect key="frame" x="122.33333333333334" y="323.99999999999994" width="70.333333333333343" height="70"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="2" cornerStyle="capsule">
@@ -65,7 +65,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQl-Xz-hiX">
-                                        <rect key="frame" x="35" y="231" width="68" height="68"/>
+                                        <rect key="frame" x="34.999999999999993" y="236.66666666666671" width="70.333333333333314" height="70.333333333333343"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="4" cornerStyle="capsule">
@@ -74,7 +74,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81o-Z5-uaa">
-                                        <rect key="frame" x="120" y="231" width="68" height="68"/>
+                                        <rect key="frame" x="122.33333333333334" y="236.66666666666671" width="70.333333333333343" height="70.333333333333343"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="5" cornerStyle="capsule">
@@ -83,7 +83,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-0l-c9A">
-                                        <rect key="frame" x="35" y="146" width="68" height="68"/>
+                                        <rect key="frame" x="34.999999999999993" y="149.33333333333331" width="70.333333333333314" height="70.333333333333314"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="7" subtitle="" cornerStyle="capsule">
@@ -92,7 +92,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxt-dh-C02">
-                                        <rect key="frame" x="120" y="146" width="68" height="68"/>
+                                        <rect key="frame" x="122.33333333333334" y="149.33333333333331" width="70.333333333333343" height="70.333333333333314"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="8" cornerStyle="capsule">
@@ -101,7 +101,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iA5-E8-RmQ">
-                                        <rect key="frame" x="205" y="146" width="68" height="68"/>
+                                        <rect key="frame" x="209.66666666666666" y="149.33333333333331" width="69.999999999999972" height="70.333333333333314"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="9" subtitle="" cornerStyle="capsule">
@@ -110,7 +110,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrV-PO-2fS">
-                                        <rect key="frame" x="120" y="61" width="68" height="68"/>
+                                        <rect key="frame" x="122.33333333333334" y="61.999999999999993" width="70.333333333333343" height="70.333333333333314"/>
                                         <color key="backgroundColor" name="functionButtonsColor"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
@@ -121,7 +121,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQv-Ih-0gF">
-                                        <rect key="frame" x="205" y="61" width="68" height="68"/>
+                                        <rect key="frame" x="209.66666666666666" y="61.999999999999993" width="69.999999999999972" height="70.333333333333314"/>
                                         <color key="backgroundColor" name="functionButtonsColor"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -132,7 +132,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kio-5r-Wal">
-                                        <rect key="frame" x="290" y="231" width="68" height="68"/>
+                                        <rect key="frame" x="296.66666666666669" y="235.99999999999997" width="70.333333333333314" height="70.333333333333343"/>
                                         <color key="backgroundColor" name="functionButtonsColor"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -143,7 +143,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3m-OG-hLi">
-                                        <rect key="frame" x="290" y="317" width="68" height="153"/>
+                                        <rect key="frame" x="296.66666666666669" y="324.33333333333331" width="70.333333333333314" height="158"/>
                                         <color key="backgroundColor" name="functionButtonsColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="F3m-OG-hLi" secondAttribute="height" multiplier="68:153" id="Tuw-xh-WRM"/>
@@ -159,7 +159,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eb5-hf-TLj">
-                                        <rect key="frame" x="290" y="146" width="68" height="68"/>
+                                        <rect key="frame" x="296.66666666666669" y="148.66666666666663" width="70.333333333333314" height="70.333333333333314"/>
                                         <color key="backgroundColor" name="functionButtonsColor"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -170,7 +170,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9r-GW-FXm">
-                                        <rect key="frame" x="290" y="61" width="68" height="68"/>
+                                        <rect key="frame" x="296.66666666666669" y="61.666666666666629" width="70.333333333333314" height="70"/>
                                         <color key="backgroundColor" name="functionButtonsColor"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -181,7 +181,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tG-RF-MBZ">
-                                        <rect key="frame" x="205" y="402" width="68" height="68"/>
+                                        <rect key="frame" x="209.66666666666666" y="411.99999999999994" width="69.999999999999972" height="70.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6tG-RF-MBZ" secondAttribute="height" multiplier="1:1" id="YvJ-Zg-dfp"/>
                                         </constraints>
@@ -193,7 +193,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fg-01-6dc">
-                                        <rect key="frame" x="205" y="316" width="68" height="68"/>
+                                        <rect key="frame" x="209.66666666666666" y="323.99999999999994" width="69.999999999999972" height="70"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="3" cornerStyle="capsule">
@@ -202,7 +202,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2f-Ex-Kb0">
-                                        <rect key="frame" x="205" y="231" width="68" height="68"/>
+                                        <rect key="frame" x="209.66666666666666" y="236.66666666666671" width="69.999999999999972" height="70.333333333333343"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="6" cornerStyle="capsule">
@@ -211,7 +211,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="vcj-BR-3vS">
-                                        <rect key="frame" x="35" y="61" width="68" height="68"/>
+                                        <rect key="frame" x="34.999999999999993" y="61.999999999999993" width="70.333333333333314" height="70.333333333333314"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="titleShadowOffset" width="39" height="20"/>
@@ -316,7 +316,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2,048" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZuV-sG-huJ">
-                                <rect key="frame" x="203" y="211.66666666666666" width="155" height="62.333333333333343"/>
+                                <rect key="frame" x="212" y="221.33333333333334" width="155" height="62.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ZuV-sG-huJ" secondAttribute="height" multiplier="159:64" id="ajT-pI-SQv"/>
                                 </constraints>
@@ -350,6 +350,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="equalButton" destination="F3m-OG-hLi" id="Dnh-KF-1Vq"/>
                         <outlet property="moonSunButton" destination="vcj-BR-3vS" id="RUx-Xk-w82"/>
                     </connections>
                 </viewController>
