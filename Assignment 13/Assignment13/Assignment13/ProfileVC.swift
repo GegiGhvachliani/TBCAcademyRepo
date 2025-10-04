@@ -8,7 +8,31 @@
 import UIKit
 
 class ProfileVC: UIViewController {
+    
     //MARK: properties
+    
+    private var lblForQuestion: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.text = "120 x 3 + 608 + 1080"
+           label.font = UIFont.systemFont(ofSize: 25)
+           label.textColor = .systemGray2
+           label.textAlignment = .right
+        
+        return label
+    }()
+    private var lblForAsnwer: UILabel = {
+        var label = UILabel()
+           label.translatesAutoresizingMaskIntoConstraints = false
+           
+           label.text = "2,048"
+           label.textColor = .label
+           label.font = UIFont.systemFont(ofSize: 55, weight: .bold)
+           label.textAlignment = .right
+        
+        return label
+    }()
     //view for buttons
     private var buttonsView = UIView()
     // buttons with number
@@ -40,7 +64,9 @@ class ProfileVC: UIViewController {
     //MARK: life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         setupUI()
+
         
     }
     
@@ -50,6 +76,8 @@ class ProfileVC: UIViewController {
         buttonsViewConfiguration()
         makeAllButtons()
         layoutButtons()
+        lblForAsnwerConfiguration()
+        lblForquestionConfiguration()
     }
     private func buttonsViewConfiguration() {
         view.addSubview(buttonsView)
@@ -62,33 +90,54 @@ class ProfileVC: UIViewController {
             buttonsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             buttonsView.leftAnchor.constraint(equalTo: view.leftAnchor),
             buttonsView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            buttonsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 5.0/8.0)
+            buttonsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 5.0/8.0),
         ])
     }
     
-    private func makeButtonWith( title: String? = nil, symbolName: String? = nil) -> UIButton {
+    func lblForAsnwerConfiguration() {
+        view.addSubview(lblForAsnwer)
+        
+        NSLayoutConstraint.activate([
+            lblForAsnwer.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -35),
+            lblForAsnwer.bottomAnchor.constraint(equalTo: buttonsView.topAnchor, constant: -40),
+            lblForAsnwer.widthAnchor.constraint(equalToConstant: 200),
+            lblForAsnwer.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    func lblForquestionConfiguration() {
+        view.addSubview(lblForQuestion)
+        
+        NSLayoutConstraint.activate([
+            lblForQuestion.rightAnchor.constraint(equalTo: lblForAsnwer.rightAnchor),
+            lblForQuestion.bottomAnchor.constraint(equalTo: lblForAsnwer.topAnchor, constant: -5),
+            lblForQuestion.widthAnchor.constraint(equalToConstant: 250),
+            lblForQuestion.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func makeButtonWith( title: String? = nil, symbolName: String? = nil, foregroundColor: UIColor = .label, weight: UIImage.SymbolWeight? = .medium ) -> UIButton {
         let button = UIButton()
         buttonsView.addSubview(button) // შესაცვლელია
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 34
         button.clipsToBounds = true
-        
+      
         if title != nil && symbolName == nil {
             
             button.setTitle(title, for: .normal)
-            button.setTitleColor(.black, for: .normal)
+            button.setTitleColor(foregroundColor, for: .normal)
             
-//            button.backgroundColor = .darkGray
             button.titleLabel?.font = UIFont.systemFont(ofSize: 27)
         } else {
             button.setImage(UIImage(systemName: symbolName ?? "error"), for: .normal)
-            button.tintColor = .black
+            button.tintColor = foregroundColor
             button.backgroundColor = .systemGray3
-            let symbolConfig = UIImage.SymbolConfiguration(pointSize: 27)
+            let symbolConfig = UIImage.SymbolConfiguration(pointSize: 27, weight: weight!)
             button.setPreferredSymbolConfiguration(symbolConfig, forImageIn: .normal)
         }
         
-        
+       
         NSLayoutConstraint.activate([
             button.heightAnchor.constraint(equalTo: buttonsView.heightAnchor, multiplier: 64.0/498.0),
             button.widthAnchor.constraint(equalTo: button.heightAnchor),
@@ -97,34 +146,59 @@ class ProfileVC: UIViewController {
         return button
     }
     
+    
+    private func buttonRadiusForAllSize(_ button: UIButton) {
+        
+    }
+    
     private func makeEqualButton() -> UIButton {
         let button = UIButton()
-        buttonsView.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 34
-        button.clipsToBounds = true
+           buttonsView.addSubview(button)
+           button.translatesAutoresizingMaskIntoConstraints = false
+           button.clipsToBounds = false
+           
+           button.setImage(UIImage(systemName: "equal"), for: .normal)
+           button.tintColor = .white
+           
+           let symbolConfig = UIImage.SymbolConfiguration(pointSize: 34)
+           button.setPreferredSymbolConfiguration(symbolConfig, forImageIn: .normal)
         
-        button.setImage(UIImage(systemName: "equal"), for: .normal)
-        button.tintColor = .black
-        button.backgroundColor = .systemGray3
-        
-        let symbolConfig = UIImage.SymbolConfiguration(pointSize: 34)
-        button.setPreferredSymbolConfiguration(symbolConfig, forImageIn: .normal)
-        
-        NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalTo: button3.widthAnchor),
-            button.heightAnchor.constraint(equalToConstant: 154)
-        ])
-        
-        return button
+           button.layer.shadowColor = UIColor.systemPink.cgColor
+           button.layer.shadowOpacity = 0.5
+           button.layer.shadowOffset = CGSize(width: 0, height: 4)
+           button.layer.shadowRadius = 10
+           
+           NSLayoutConstraint.activate([
+               button.widthAnchor.constraint(equalTo: button3.widthAnchor),
+               button.heightAnchor.constraint(equalToConstant: 154)
+           ])
+           
+           
+           DispatchQueue.main.async {
+               let gradient = CAGradientLayer()
+               gradient.colors = [
+                   UIColor(red: 0.93, green: 0.05, blue: 0.60, alpha: 1.0).cgColor,
+                   UIColor(red: 1.0, green: 0.35, blue: 0.18, alpha: 1.0).cgColor
+               ]
+               gradient.startPoint = CGPoint(x: 0, y: 0)
+               gradient.endPoint = CGPoint(x: 1, y: 1)
+               gradient.frame = button.bounds
+               gradient.cornerRadius = 34
+               button.layer.insertSublayer(gradient, at: 0)
+               
+               
+           }
+           
+           return button
     }
     
     func makeAllButtons() {
-        buttonDL = makeButtonWith(symbolName: "moon")
+        buttonDL = makeButtonWith(symbolName: "moon", foregroundColor: .systemPink, weight: .heavy)
+        buttonDL.addTarget(self, action: #selector(moonSunButtonAction), for: .touchUpInside)
         button7 = makeButtonWith(title: "7")
         button4 = makeButtonWith(title: "4")
         button1 = makeButtonWith(title: "1")
-        buttonAC = makeButtonWith(title: "AC")
+        buttonAC = makeButtonWith(title: "AC", foregroundColor: .systemPink)
         
         buttonPercent = makeButtonWith(symbolName: "percent")
         button8 = makeButtonWith(title: "8")
@@ -144,7 +218,16 @@ class ProfileVC: UIViewController {
         buttonEqual = makeEqualButton()
     }
     
-   
+    @objc func moonSunButtonAction(_ sender: Any) {
+            overrideUserInterfaceStyle = overrideUserInterfaceStyle == .dark
+        ? .light
+        : .dark
+
+            let imageName = overrideUserInterfaceStyle == .dark 
+        ? "sun.max"
+        : "moon"
+                buttonDL.setImage(UIImage(systemName: imageName), for: .normal)
+        }
     
         private func layoutButtons() {
             let sideToButtomSpace: CGFloat = 35.0
