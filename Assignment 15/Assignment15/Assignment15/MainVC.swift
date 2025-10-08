@@ -28,10 +28,7 @@ class MainVC: UIViewController {
         textField.layer.cornerRadius = 5
         textField.layer.borderColor = UIColor.white.cgColor
         textField.layer.borderWidth = 1
-        textField.attributedPlaceholder = NSAttributedString(string: "მაგ: ქალწული / virgo",
-                                                             attributes: [.foregroundColor: UIColor.gray,
-                                                                          .font: UIFont.boldSystemFont(ofSize: 17)
-                                                             ])
+        textField.attributedPlaceholder = NSAttributedString(string: "მაგ: ქალწული / virgo", attributes: [.foregroundColor: UIColor.gray, .font: UIFont.boldSystemFont(ofSize: 17)])
         textField.backgroundColor = .clear
         textField.textAlignment = .left
         textField.textColor = .white
@@ -76,6 +73,7 @@ class MainVC: UIViewController {
         setupUI()
     }
     
+    //MARK: Methods
     private func setupUI() {
         setupBackground()
         setupTopView()
@@ -165,6 +163,7 @@ class MainVC: UIViewController {
     private func buttonAction() {
         let nextVC = DescriptionVC()
         nextVC.zodiacName = zodiacName
+        nextVC.MainDelegate = self
         
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
@@ -172,4 +171,9 @@ class MainVC: UIViewController {
     
 #Preview {
     MainVC()
+}
+extension MainVC: ColorChangerDelegate {
+    func changeColor(color: UIColor) {
+        self.view.backgroundColor = color
+    }
 }

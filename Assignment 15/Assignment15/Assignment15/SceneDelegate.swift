@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  Assignment15
-//
-//  Created by Gegi Ghvachliani on 08.10.25.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -27,4 +20,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 }
+
 
