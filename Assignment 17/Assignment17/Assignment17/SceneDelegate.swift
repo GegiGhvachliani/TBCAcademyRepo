@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  Assignment17
-//
-//  Created by Gegi Ghvachliani on 09.10.25.
-//
 
 import UIKit
 
