@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Presidential_candidate_Shalva_Natelashvili_(Labor_Party_of_Georgia)_(31705405498)_(cropped).jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
