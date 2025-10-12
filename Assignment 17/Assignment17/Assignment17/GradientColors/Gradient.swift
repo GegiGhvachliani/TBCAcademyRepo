@@ -11,6 +11,6 @@ extension UIButton {
  
         self.layer.insertSublayer(gradientLayer, at: 0)
         self.layer.cornerRadius = cornerRadius
-        self.layer.masksToBounds = false
+        self.layer.masksToBounds = true
     }
 }

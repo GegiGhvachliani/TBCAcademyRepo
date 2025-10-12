@@ -3,14 +3,14 @@ import UIKit
 
 class TopView: UIView {
     
-    private var activeTasksLabel: UILabel = UILabel()
-    private var shalvaImage: UIImageView = UIImageView()
-    private var shalvaImageSticker: UILabel = UILabel()
+     var activeTasksLabel: UILabel = UILabel()
+     var shalvaImage: UIImageView = UIImageView()
+     var shalvaImageSticker: UILabel = UILabel()
+
+     var completeAllOrNothingButton: UIButton = UIButton()
     
-    private var completeAllOrNothingButton: UIButton = UIButton()
     
-    
-    var activeTasksCount: Int = 3
+    var activeTasksCount: Int = 3  
 
     init() {
         super.init(frame: .zero)
@@ -61,7 +61,7 @@ class TopView: UIView {
         
         NSLayoutConstraint.activate([
             shalvaImage.topAnchor.constraint(equalTo: topAnchor, constant: 7),
-            shalvaImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 364),
+            shalvaImage.rightAnchor.constraint(equalTo: rightAnchor, constant: -25),
             shalvaImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 50.0 / 430),
             shalvaImage.heightAnchor.constraint(equalTo: shalvaImage.widthAnchor)
         ])
@@ -71,7 +71,7 @@ class TopView: UIView {
         addSubview(shalvaImageSticker)
         shalvaImageSticker.translatesAutoresizingMaskIntoConstraints = false
         
-        shalvaImageSticker.text = String(activeTasksCount)
+        shalvaImageSticker.text = String(tasksToDo.count - activeTasksCount)
         shalvaImageSticker.textColor = .white
         shalvaImageSticker.textAlignment = .center
         shalvaImageSticker.backgroundColor = .systemOrange
