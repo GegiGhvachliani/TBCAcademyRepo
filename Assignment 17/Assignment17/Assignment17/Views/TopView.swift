@@ -9,11 +9,15 @@ class TopView: UIView {
 
      var completeAllOrNothingButton: UIButton = UIButton()
     
-    
-    var activeTasksCount: Int = 3  
+//     var totalTasks = {
+//        tasksToDo.count
+//     }
+//     var activeTasksCount: Int {
+//         tasksToDo.filter { $0.isCompleted }.count
+//     }
 
-    init() {
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setupUI()
         backgroundColor = .viewBackground
@@ -87,7 +91,11 @@ class TopView: UIView {
         ])
     }
     
-    
+    func updateTopViewInfos() {
+        activeTasksLabel.text = "შენ გაქვს \(activeTasksCount) აქტიური თასქი"
+        
+        shalvaImageSticker.text = "\(totalTasks - activeTasksCount)"
+    }
     
 }
 

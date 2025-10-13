@@ -1,7 +1,7 @@
 import UIKit
 
 class MainVC: UIViewController {
-    
+    // MARK: Properties
     private var topView: TopView = TopView()
     private var completeAllOrNothingButton: UIButton = UIButton()
     private var progressView: ProgressView = ProgressView()
@@ -9,8 +9,7 @@ class MainVC: UIViewController {
     private var progressLabel: UILabel = UILabel()
     
     private var tableViewLabel: UILabel = UILabel()
-    
-    var tableView: UITableView = {
+    private var tableView: UITableView = {
         let table = UITableView()
         
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -18,56 +17,28 @@ class MainVC: UIViewController {
         return table
     }()
     
-    var sortedTasks: [Tasks] {
-        return tasksToDo.sorted { first, second in
-            if first.isCompleted == true && second.isCompleted == false {
-                return true
-            } else {
-                return false
-            }
-        }
-    }
-    
-    
-    
+    //MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .viewBackground
         
-        
         setupUI()
     }
     
+    //MARK: Methods
     private func setupUI() {
         setupTopView()
         setupCompleteAllOrNothingButton()
         setupProgressLabel()
+        setupButtonAction()
         setupProgressView()
         
         //tableView
         setupTableView()
         setupTableViewLabel()
+        
+        //top and progress views
         updateProgress()
-    }
-    
-    func updateProgress() {
-       
-        let completedCount = tasksToDo.filter { $0.isCompleted }.count
-        let totalCount = tasksToDo.count
-        let activeCount = totalCount - completedCount
-        
-        //  TopView-ის ინფოს განახლება
-        topView.activeTasksCount = activeCount
-        topView.activeTasksLabel.text = "შენ გაქვს \(activeCount) აქტიური თასქი"
-        topView.shalvaImageSticker.text = String(tasksToDo.count - activeCount)
-        
-        //  ProgressView
-        progressView.activeTasksCount = activeCount
-        
-        //   completeAllOrNothingButton-ის ტექსტი
-        let allCompleted = tasksToDo.allSatisfy { $0.isCompleted }
-        let buttonTitle = allCompleted ? "ვერცერთი შევასრულე" : "ყველა შევასრულე"
-        completeAllOrNothingButton.setTitle(buttonTitle, for: .normal)
     }
     
     private func setupTopView() {
@@ -85,24 +56,12 @@ class MainVC: UIViewController {
         view.addSubview(completeAllOrNothingButton)
         completeAllOrNothingButton.translatesAutoresizingMaskIntoConstraints = false
         
-        completeAllOrNothingButton.setTitle("ყველა შეასრულე", for: .normal) //TODO: "ყველა შევასრულე"-ს დაჭერის შემთხვევაში, ყველა თასქის სტატუსი უნდა შეიცვალოს შესრულებულზე.
+        completeAllOrNothingButton.setTitle("ყველა შეასრულე", for: .normal)
         completeAllOrNothingButton.titleLabel?.textColor = .white
         completeAllOrNothingButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         completeAllOrNothingButton.layer.cornerRadius = 16
         completeAllOrNothingButton.clipsToBounds = true
         completeAllOrNothingButton.titleLabel?.textAlignment = .center
-        
-        completeAllOrNothingButton.addAction(UIAction { [weak self] _  in
-            let allCompleted = tasksToDo.allSatisfy { $0.isCompleted }
-               
-               for i in 0..<tasksToDo.count {
-                   tasksToDo[i].isCompleted = !allCompleted
-                   
-                   self?.tableView.reloadData()
-                   self?.updateProgress()
-               }
-            
-        }, for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             completeAllOrNothingButton.topAnchor.constraint(equalTo: topView.bottomAnchor),
@@ -121,8 +80,6 @@ class MainVC: UIViewController {
             gradient.endPoint = CGPoint(x: 1, y: 1)
             gradient.frame = self.completeAllOrNothingButton.bounds
             self.completeAllOrNothingButton.layer.insertSublayer(gradient, at: 0)
-            
-            
         }
     }
     
@@ -179,7 +136,7 @@ class MainVC: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.layer.cornerRadius = 15 
+        tableView.layer.cornerRadius = 15
         
         tableView.register(TasksCell.self, forCellReuseIdentifier: "TasksCell")
         
@@ -192,6 +149,27 @@ class MainVC: UIViewController {
         
     }
     
+    private func setupButtonAction() {
+        completeAllOrNothingButton.addAction(UIAction { [weak self] _  in
+            let allCompleted = tasksToDo.allSatisfy { $0.isCompleted }
+            
+            for i in 0..<tasksToDo.count {
+                tasksToDo[i].isCompleted = !allCompleted
+                
+                self?.tableView.reloadData()
+                self?.updateProgress()
+            }
+        }, for: .touchUpInside)
+    }
+
+    func updateProgress() {
+        topView.updateTopViewInfos()
+        progressView.updateProgressView()
+        
+        let allCompleted = tasksToDo.allSatisfy { $0.isCompleted }
+        let buttonTitle = allCompleted ? "ვერცერთი შევასრულე" : "ყველა შევასრულე"
+        completeAllOrNothingButton.setTitle(buttonTitle, for: .normal)
+    }
 }
 
 

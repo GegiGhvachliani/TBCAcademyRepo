@@ -8,3 +8,11 @@ var tasksToDo: [Tasks] = [
     Tasks(todo: "არჩევნების მოგება", completionDeadline: "30 თებ", stripeColor: .second),
     Tasks(todo: "სახლში ხო ხართ კარგად", completionDeadline: "31 მაი", stripeColor: .third)
 ]
+
+var activeTasksCount: Int  {
+    tasksToDo.filter { !$0.isCompleted }.count
+}
+
+var totalTasks: Int {
+    tasksToDo.count
+}

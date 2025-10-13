@@ -142,17 +142,12 @@ class TasksCell: UITableViewCell {
     }
     
     func configure(with task: Tasks) {
-        
         taskLabel.text = task.todo
         deadLineLabel.text = task.completionDeadline
-        
-  
         stripeColor.backgroundColor = task.stripeColor
-        
        
         let iconName = task.isCompleted ? "checkmark.circle" : "circle"
         checkMarkImage.image = UIImage(systemName: iconName)
-        
 
         checkMarkImage.backgroundColor = task.isCompleted ? .checkMark : .tableBackground
     }

@@ -2,62 +2,35 @@
 import UIKit
 
 class ProgressView: UIView {
+    //MARK: Properties
     private var oneYearTaksLabel: UILabel = UILabel()
     private var whatPartCompletedLabel: UILabel = UILabel()
-    private var changableReminderLabel: UILabel = UILabel()
+    private var changeableReminderLabel: UILabel = UILabel()
     private var percentLabel: UILabel = UILabel()
     
     private var progressView: UIProgressView = UIProgressView()
- 
-    var activeTasksCount: Int = 3 {
-        didSet {
-            updateProgress()
-        }
-    }
-    var changableRemainderDict: [Int:String] = [ 0 : "ცუდად გაქვს საქმე",
-                                                 1 : "მთავარია დაიწყე, გააგრძელე!",
-                                                 2 : "ძალიან ბევრი გაქვს სამუშაო",
-                                                 3 : "ბევრი გაქვს სამუშაო",
-                                                 4 : "მიზანს უახლოვდები!",
-                                                 5 : "ძალიან ცოტა დაგრჩა",
-                                                 6 : "შენი წლის გეგმა შეასრულე. გილოცავ!"
-    ]
     
     init() {
         super.init(frame: .zero)
         
         setupUI()
-        
     }
     
-    
-    func updateProgress() {
-        let completed = 6 - activeTasksCount
-        let total = 6
-        let progress = Float(completed) / Float(total)
-        
-        //Labels
-        whatPartCompletedLabel.text = "\(completed)/6 თასქი შესრულებული"
-        percentLabel.text = "\(Int(progress * 100))%"
-        changableReminderLabel.text = changableRemainderDict[activeTasksCount] ?? "მოსაფიქრებელია"
-        
-        //Progress
-        progressView.progress = progress    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Methods
     private func setupUI() {
         setupConstraints()
-        setupOneYearTaksLabel()
+        
         setupOneYearTaksLabel()
         setupWhatPartCompleted()
         setupChangableReminder()
         setupPercent()
+        
         setupProgressView()
-
-        updateProgress()
     }
     
     private func setupConstraints() {
@@ -95,7 +68,6 @@ class ProgressView: UIView {
         addSubview(whatPartCompletedLabel)
         whatPartCompletedLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        whatPartCompletedLabel.text = "\(6 - activeTasksCount)/6 თასქი შესრულებული"
         whatPartCompletedLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         whatPartCompletedLabel.textColor = .darkGray
         whatPartCompletedLabel.textAlignment = .left
@@ -106,23 +78,21 @@ class ProgressView: UIView {
             whatPartCompletedLabel.widthAnchor.constraint(equalToConstant: 215),
             whatPartCompletedLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
-        
     }
     
     private func setupChangableReminder() {
-        addSubview(changableReminderLabel)
-        changableReminderLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(changeableReminderLabel)
+        changeableReminderLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        changableReminderLabel.text = changableRemainderDict[activeTasksCount] ?? "მოსაფიქრებელია"
-        changableReminderLabel.font = UIFont.systemFont(ofSize: 16, weight: .thin)
-        changableReminderLabel.textAlignment = .left
-        changableReminderLabel.textColor = .darkGray
+        changeableReminderLabel.font = UIFont.systemFont(ofSize: 16, weight: .thin)
+        changeableReminderLabel.textAlignment = .left
+        changeableReminderLabel.textColor = .darkGray
         
         NSLayoutConstraint.activate([
-            changableReminderLabel.topAnchor.constraint(equalTo: whatPartCompletedLabel.bottomAnchor, constant: 10),
-            changableReminderLabel.leadingAnchor.constraint(equalTo: whatPartCompletedLabel.leadingAnchor),
-            changableReminderLabel.widthAnchor.constraint(equalToConstant: 160),
-            changableReminderLabel.heightAnchor.constraint(equalToConstant: 20)
+            changeableReminderLabel.topAnchor.constraint(equalTo: whatPartCompletedLabel.bottomAnchor, constant: 10),
+            changeableReminderLabel.leadingAnchor.constraint(equalTo: whatPartCompletedLabel.leadingAnchor),
+            changeableReminderLabel.widthAnchor.constraint(equalToConstant: 300),
+            changeableReminderLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     
@@ -130,13 +100,12 @@ class ProgressView: UIView {
         addSubview(percentLabel)
         percentLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        percentLabel.text = "\(Int((Double(6 - activeTasksCount) / 6) * 100))%"
         percentLabel.textColor = .label
         percentLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         
         NSLayoutConstraint.activate([
             percentLabel.topAnchor.constraint(equalTo: whatPartCompletedLabel.bottomAnchor, constant: 0),
-            percentLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -15),
+            percentLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -20),
             percentLabel.widthAnchor.constraint(equalToConstant: 55),
             percentLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
@@ -155,14 +124,14 @@ class ProgressView: UIView {
         progressView.layer.shadowOpacity = 0.8
         progressView.layer.shadowOffset = CGSize(width: 0, height: 3)
         progressView.layer.shadowRadius = 10
-        progressView.progress = Float(completed / total)
+//        progressView.progress = Float(completed / total)
         progressView.trackTintColor = UIColor.progress.withAlphaComponent(0.3)
         progressView.layer.cornerRadius = 10
         progressView.clipsToBounds = true
         
         
         NSLayoutConstraint.activate([
-            progressView.topAnchor.constraint(equalTo: changableReminderLabel.bottomAnchor, constant: 4),
+            progressView.topAnchor.constraint(equalTo: changeableReminderLabel.bottomAnchor, constant: 4),
             progressView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             progressView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 12/13),
             progressView.heightAnchor.constraint(equalToConstant: 20)
@@ -175,6 +144,12 @@ class ProgressView: UIView {
         }
     }
     
+    func updateProgressView() {
+        whatPartCompletedLabel.text = "\((totalTasks - activeTasksCount)) თასქი შესრულებული"
+        changeableReminderLabel.text = changeableReminderDict[totalTasks - activeTasksCount] ?? "მოსაფიქრებელია"
+        percentLabel.text = "\(Int(Double(totalTasks - activeTasksCount) / Double(totalTasks) * 100))%"
+        progressView.progress = (Float(Double(totalTasks - activeTasksCount) / Double(totalTasks)))
+    }
 }
 
 #Preview {
