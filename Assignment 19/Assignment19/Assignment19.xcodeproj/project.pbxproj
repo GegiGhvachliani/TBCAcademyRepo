@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		63449FC12EA40F6F009DC165 /* Assignment19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment19.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63449FC12EA40F6F009DC165 /* Assignment19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Assignment19.app; path = "/Users/gegighvachliani/Desktop/TBCacademyRepo/Assignment 19/Assignment19/build/Debug-iphoneos/Assignment19.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,6 +29,11 @@
 			path = Assignment19;
 			sourceTree = "<group>";
 		};
+		636EABE02EA44A7B007A93D4 /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,16 +51,8 @@
 			isa = PBXGroup;
 			children = (
 				63449FC32EA40F6F009DC165 /* Assignment19 */,
-				63449FC22EA40F6F009DC165 /* Products */,
+				636EABE02EA44A7B007A93D4 /* Views */,
 			);
-			sourceTree = "<group>";
-		};
-		63449FC22EA40F6F009DC165 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				63449FC12EA40F6F009DC165 /* Assignment19.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -75,6 +72,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				63449FC32EA40F6F009DC165 /* Assignment19 */,
+				636EABE02EA44A7B007A93D4 /* Views */,
 			);
 			name = Assignment19;
 			packageProductDependencies = (
@@ -108,7 +106,7 @@
 			mainGroup = 63449FB82EA40F6F009DC165;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 63449FC22EA40F6F009DC165 /* Products */;
+			productRefGroup = 63449FB82EA40F6F009DC165;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -149,7 +147,6 @@
 				INFOPLIST_FILE = Assignment19/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
@@ -181,7 +178,6 @@
 				INFOPLIST_FILE = Assignment19/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
