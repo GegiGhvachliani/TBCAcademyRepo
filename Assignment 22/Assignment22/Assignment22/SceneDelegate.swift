@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Assignment22
 //
-//  Created by Gegi Ghvachliani on 22.10.25.
+//  Created by Gegi Ghvachliani on 24.10.25.
 //
 
 import UIKit
@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: scene)
-        let vc = CountriesListVC()
+        let vc = UIViewController()
         window?.rootViewController = UINavigationController(rootViewController: vc)
         window?.makeKeyAndVisible()
     }

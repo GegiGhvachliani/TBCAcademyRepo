@@ -6,32 +6,25 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		6306F3F42EAA1CEC00CB35A7 /* CountryFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6306F3F32EAA1CEC00CB35A7 /* CountryFlagView.swift */; };
-		63975F192EA95CF900C1972E /* CountryDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63975F182EA95CF900C1972E /* CountryDetailsVC.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		6306F3F32EAA1CEC00CB35A7 /* CountryFlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryFlagView.swift; sourceTree = "<group>"; };
-		633025922EA9304200CA3C20 /* Assignment22.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment22.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		63975F182EA95CF900C1972E /* CountryDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsVC.swift; sourceTree = "<group>"; };
+		638250C62EAB835A009A9A4F /* Assignment22.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment22.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		633025A42EA9304400CA3C20 /* Exceptions for "Assignment22" folder in "Assignment22" target */ = {
+		638250D82EAB835B009A9A4F /* Exceptions for "Assignment22" folder in "Assignment22" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 633025912EA9304200CA3C20 /* Assignment22 */;
+			target = 638250C52EAB835A009A9A4F /* Assignment22 */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		633025942EA9304200CA3C20 /* Assignment22 */ = {
+		638250C82EAB835A009A9A4F /* Assignment22 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				633025A42EA9304400CA3C20 /* Exceptions for "Assignment22" folder in "Assignment22" target */,
+				638250D82EAB835B009A9A4F /* Exceptions for "Assignment22" folder in "Assignment22" target */,
 			);
 			path = Assignment22;
 			sourceTree = "<group>";
@@ -39,7 +32,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6330258F2EA9304200CA3C20 /* Frameworks */ = {
+		638250C32EAB835A009A9A4F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,101 +42,83 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		633025892EA9304200CA3C20 = {
+		638250BD2EAB835A009A9A4F = {
 			isa = PBXGroup;
 			children = (
-				633025942EA9304200CA3C20 /* Assignment22 */,
-				633025932EA9304200CA3C20 /* Products */,
-				63975F172EA95C5100C1972E /* CountriesDetailsVC */,
+				638250C82EAB835A009A9A4F /* Assignment22 */,
+				638250C72EAB835A009A9A4F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		633025932EA9304200CA3C20 /* Products */ = {
+		638250C72EAB835A009A9A4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				633025922EA9304200CA3C20 /* Assignment22.app */,
+				638250C62EAB835A009A9A4F /* Assignment22.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		63975F172EA95C5100C1972E /* CountriesDetailsVC */ = {
-			isa = PBXGroup;
-			children = (
-				63975F1A2EA960AE00C1972E /* Views */,
-				63975F182EA95CF900C1972E /* CountryDetailsVC.swift */,
-			);
-			path = CountriesDetailsVC;
-			sourceTree = "<group>";
-		};
-		63975F1A2EA960AE00C1972E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				6306F3F32EAA1CEC00CB35A7 /* CountryFlagView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		633025912EA9304200CA3C20 /* Assignment22 */ = {
+		638250C52EAB835A009A9A4F /* Assignment22 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 633025A52EA9304400CA3C20 /* Build configuration list for PBXNativeTarget "Assignment22" */;
+			buildConfigurationList = 638250D92EAB835B009A9A4F /* Build configuration list for PBXNativeTarget "Assignment22" */;
 			buildPhases = (
-				6330258E2EA9304200CA3C20 /* Sources */,
-				6330258F2EA9304200CA3C20 /* Frameworks */,
-				633025902EA9304200CA3C20 /* Resources */,
+				638250C22EAB835A009A9A4F /* Sources */,
+				638250C32EAB835A009A9A4F /* Frameworks */,
+				638250C42EAB835A009A9A4F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				633025942EA9304200CA3C20 /* Assignment22 */,
+				638250C82EAB835A009A9A4F /* Assignment22 */,
 			);
 			name = Assignment22;
 			packageProductDependencies = (
 			);
 			productName = Assignment22;
-			productReference = 633025922EA9304200CA3C20 /* Assignment22.app */;
+			productReference = 638250C62EAB835A009A9A4F /* Assignment22.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6330258A2EA9304200CA3C20 /* Project object */ = {
+		638250BE2EAB835A009A9A4F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					633025912EA9304200CA3C20 = {
+					638250C52EAB835A009A9A4F = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
 				};
 			};
-			buildConfigurationList = 6330258D2EA9304200CA3C20 /* Build configuration list for PBXProject "Assignment22" */;
+			buildConfigurationList = 638250C12EAB835A009A9A4F /* Build configuration list for PBXProject "Assignment22" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 633025892EA9304200CA3C20;
+			mainGroup = 638250BD2EAB835A009A9A4F;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 633025932EA9304200CA3C20 /* Products */;
+			productRefGroup = 638250C72EAB835A009A9A4F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				633025912EA9304200CA3C20 /* Assignment22 */,
+				638250C52EAB835A009A9A4F /* Assignment22 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		633025902EA9304200CA3C20 /* Resources */ = {
+		638250C42EAB835A009A9A4F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -153,19 +128,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6330258E2EA9304200CA3C20 /* Sources */ = {
+		638250C22EAB835A009A9A4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63975F192EA95CF900C1972E /* CountryDetailsVC.swift in Sources */,
-				6306F3F42EAA1CEC00CB35A7 /* CountryFlagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		633025A62EA9304400CA3C20 /* Debug */ = {
+		638250DA2EAB835B009A9A4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -196,7 +169,7 @@
 			};
 			name = Debug;
 		};
-		633025A72EA9304400CA3C20 /* Release */ = {
+		638250DB2EAB835B009A9A4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -227,7 +200,7 @@
 			};
 			name = Release;
 		};
-		633025A82EA9304400CA3C20 /* Debug */ = {
+		638250DC2EAB835B009A9A4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -290,7 +263,7 @@
 			};
 			name = Debug;
 		};
-		633025A92EA9304400CA3C20 /* Release */ = {
+		638250DD2EAB835B009A9A4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -349,25 +322,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6330258D2EA9304200CA3C20 /* Build configuration list for PBXProject "Assignment22" */ = {
+		638250C12EAB835A009A9A4F /* Build configuration list for PBXProject "Assignment22" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				633025A82EA9304400CA3C20 /* Debug */,
-				633025A92EA9304400CA3C20 /* Release */,
+				638250DC2EAB835B009A9A4F /* Debug */,
+				638250DD2EAB835B009A9A4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		633025A52EA9304400CA3C20 /* Build configuration list for PBXNativeTarget "Assignment22" */ = {
+		638250D92EAB835B009A9A4F /* Build configuration list for PBXNativeTarget "Assignment22" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				633025A62EA9304400CA3C20 /* Debug */,
-				633025A72EA9304400CA3C20 /* Release */,
+				638250DA2EAB835B009A9A4F /* Debug */,
+				638250DB2EAB835B009A9A4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6330258A2EA9304200CA3C20 /* Project object */;
+	rootObject = 638250BE2EAB835A009A9A4F /* Project object */;
 }

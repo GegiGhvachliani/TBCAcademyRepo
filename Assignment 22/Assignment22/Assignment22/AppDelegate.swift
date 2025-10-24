@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Assignment22
 //
-//  Created by Gegi Ghvachliani on 22.10.25.
+//  Created by Gegi Ghvachliani on 24.10.25.
 //
 
 import UIKit
