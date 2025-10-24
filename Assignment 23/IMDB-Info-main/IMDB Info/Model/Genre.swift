@@ -6,6 +6,6 @@
 import Foundation
 
 struct Genre: Decodable {
-    var id: Bool
+    var id: Int
     var name: String
 }

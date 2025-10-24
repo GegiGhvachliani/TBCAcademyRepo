@@ -24,7 +24,7 @@ final class MovieManager {
                         print (error.localizedDescription)
                     }
                 }
-            }
+            }.resume()
         }
     }
     

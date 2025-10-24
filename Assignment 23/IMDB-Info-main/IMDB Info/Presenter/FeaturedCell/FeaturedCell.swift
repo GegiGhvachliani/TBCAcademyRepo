@@ -18,15 +18,15 @@ final class FeaturedCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        GenreManager.fetchGenreList(with: genreListUrl) { genreList in
-            self.genreList = genreList.genres
+        GenreManager.fetchGenreList(with: genreListUrl) { [weak self] genreList in
+            self?.genreList = genreList.genres
         }
         
         self.showAnimatedGradientSkeleton()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-            self.stopSkeletonAnimation()
-            self.hideSkeleton()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
+            self?.stopSkeletonAnimation()
+            self?.hideSkeleton()
         })
     }
     
