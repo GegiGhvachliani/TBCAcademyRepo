@@ -37,6 +37,7 @@ class QuizPageViewModel {
         }
     
     func reset() {
-        // TODO: gasaketebeli
+        UserDefaults.standard.removeObject(forKey: "correct")
+        UserDefaults.standard.removeObject(forKey: "incorrect")
     }
 }

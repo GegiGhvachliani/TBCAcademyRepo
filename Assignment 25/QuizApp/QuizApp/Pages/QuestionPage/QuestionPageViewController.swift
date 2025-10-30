@@ -192,5 +192,6 @@ extension QuestionPageViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectAnswer(at: indexPath.row)
+        viewModel.saveStats()
     }
 }

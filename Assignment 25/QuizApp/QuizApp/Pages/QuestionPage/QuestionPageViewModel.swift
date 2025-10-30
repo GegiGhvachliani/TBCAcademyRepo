@@ -4,15 +4,26 @@
 //
 //  Created by Gegi Ghvachliani on 29.10.25.
 //
+import Foundation
 
 class QuestionPageViewModel {
     private let question: QuizQuestionModel
     
     private var selectedAnswerIndex: Int?
     
-    // userDefault-ისთვის
-    private var correctCount: Int = 0
-    private var incorrectCount: Int = 0
+    
+    private var correctCount: Int = 0 {
+        didSet {
+            UserDefaults.standard.set(correctCount, forKey: "correct")
+        }
+    }
+    
+    private var incorrectCount: Int = 0 {
+        didSet {
+            UserDefaults.standard.set(incorrectCount, forKey: "incorrect")
+        }
+    }
+    
     private var hasAnswered: Bool = false
     
     private var allAnswers: [String]
@@ -21,8 +32,10 @@ class QuestionPageViewModel {
     
     init(question: QuizQuestionModel) {
         self.question = question
+        self.correctCount = UserDefaults.standard.integer(forKey: "correct")
+        self.incorrectCount = UserDefaults.standard.integer(forKey: "incorrect")
         self.allAnswers = (question.incorrectAnswers + [question.correctAnswer]).shuffled()
-        loadStats()
+        
     }
     
     var questionNumberText: String {
@@ -59,7 +72,7 @@ class QuestionPageViewModel {
             incorrectCount += 1
         }
         
-        saveStats() // userDefaultit unda davaimplemento
+        saveStats()
         onAnswerSelected?()
     }
     
@@ -75,13 +88,12 @@ class QuestionPageViewModel {
     // MARK: UserDefaultebis gamoyeneba
     
     private func loadStats() {
-        // TODO: gadatvirte userDefault
         correctCount = 0
         incorrectCount = 0
     }
     
-    private func saveStats() {
-        // TODO: sheinaxe userDefault-shi
-        print("Stats saved: Correct \(correctCount), Incorrect \(incorrectCount)")
+     func saveStats() {
+        UserDefaults.standard.set(correctCount, forKey: "correct")
+        UserDefaults.standard.set(incorrectCount, forKey: "incorrect")
     }
 }
