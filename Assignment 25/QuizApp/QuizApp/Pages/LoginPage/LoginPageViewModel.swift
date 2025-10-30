@@ -5,14 +5,49 @@
 //  Created by Gegi Ghvachliani on 29.10.25.
 //
 
+import Foundation
+import Security
+ 
 class LoginPageViewModel {
-    var login: (() -> Void)?
     
-    func login(username: String, password: String, confirmPassword: String) {
-        guard !username.isEmpty, !password.isEmpty, !confirmPassword.isEmpty else { return }
+    private let passwordKey = "someKey"
+    
+    func isUserLoggedIn() -> Bool {
+        getPassword() != nil
+    }
+    
+    func save(password: String) {
+        let data = password.data(using: .utf8)!
         
-        guard password == confirmPassword else { return }
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: passwordKey,
+            kSecValueData as String: data
+        ]
+                
+        SecItemAdd(query as CFDictionary, nil)
+    }
+    
+    func getPassword() -> String? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: passwordKey,
+            kSecReturnData as String: true
+        ]
         
-        login?()
+        var result: AnyObject?
+        SecItemCopyMatching(query as CFDictionary, &result)
+        
+        guard let data = result as? Data else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+    
+    func erasePassword() {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: passwordKey
+        ]
+        
+        SecItemDelete(query as CFDictionary)
     }
 }

@@ -85,7 +85,19 @@ class LoginPageViewController: UIViewController {
     }
     
     private func handleLogin() {
+        let username = loginView.usernameTextField.text ?? ""
+        let password = loginView.passwordTextField.text ?? ""
+        let confirmPassword = loginView.confirmPasswordTextField.text ?? ""
         
+        guard password == confirmPassword else {
+            return
+        }
+        
+        guard password.isEmpty != true, confirmPassword.isEmpty != true, username.isEmpty != true else {
+            return
+        }
+        
+        viewModel.save(password: password)
     }
     
     private func navigate() {

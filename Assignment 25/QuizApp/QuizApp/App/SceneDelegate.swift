@@ -15,10 +15,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(windowScene: scene)
-        let vc = LoginPageViewController(viewModel: LoginPageViewModel())
-        window?.rootViewController = UINavigationController(rootViewController: vc)
-        window?.makeKeyAndVisible()
+        let loginPageViewModel = LoginPageViewModel()
+        let quizPageViewModel = QuizPageViewModel()
+        
+        if loginPageViewModel.isUserLoggedIn() {
+            window = UIWindow(windowScene: scene)
+            let vc = QuizPageViewController(viewModel: quizPageViewModel)
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+            window?.makeKeyAndVisible()
+        } else {
+            window = UIWindow(windowScene: scene)
+            let vc = LoginPageViewController(viewModel: LoginPageViewModel())
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+            window?.makeKeyAndVisible()
+        }
     }
 }
 
