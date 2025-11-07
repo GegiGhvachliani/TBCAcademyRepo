@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import TinyConstraints
+import CommonUIComponents
 
 class LinksSection: UIView {
     
@@ -41,27 +43,23 @@ class LinksSection: UIView {
     private func setupTitleLabel() {
         addSubview(titleLabel)
         
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
-        ])
+        titleLabel.leading(to: self, offset: 16)
+        titleLabel.topToSuperview()
     }
     
     private func setupButtons() {
         addSubview(openStreetMapsButton)
         addSubview(googleMapsButton)
         
-        NSLayoutConstraint.activate([
-            openStreetMapsButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 80),
-            openStreetMapsButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            openStreetMapsButton.heightAnchor.constraint(equalTo: openStreetMapsButton.widthAnchor),
-            openStreetMapsButton.widthAnchor.constraint(equalToConstant: ScreenSize.width * 0.16),
-            
-            googleMapsButton.leadingAnchor.constraint(equalTo: openStreetMapsButton.trailingAnchor, constant: 100),
-            googleMapsButton.topAnchor.constraint(equalTo: openStreetMapsButton.topAnchor),
-            googleMapsButton.heightAnchor.constraint(equalTo: googleMapsButton.widthAnchor),
-            googleMapsButton.widthAnchor.constraint(equalTo: openStreetMapsButton.widthAnchor)
-        ])
+        openStreetMapsButton.leadingToSuperview(offset: 80)
+        openStreetMapsButton.topToBottom(of: titleLabel, offset: 20)
+        openStreetMapsButton.width(ScreenSize.width * 0.16)
+        openStreetMapsButton.aspectRatio(1)
+        
+        googleMapsButton.leadingToTrailing(of: openStreetMapsButton, offset: 100)
+        googleMapsButton.top(to: openStreetMapsButton)
+        googleMapsButton.width(to: openStreetMapsButton)
+        googleMapsButton.aspectRatio(1)
     }
     
     // MARK: - Functions

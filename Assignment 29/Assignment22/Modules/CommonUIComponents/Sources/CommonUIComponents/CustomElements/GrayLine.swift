@@ -7,8 +7,8 @@
 
 import UIKit
 
-class GrayLine: UIView {
-    init() {
+public class GrayLine: UIView {
+    public init() {
         super.init(frame: .zero)
         self.backgroundColor = .systemGray5
         self.translatesAutoresizingMaskIntoConstraints = false

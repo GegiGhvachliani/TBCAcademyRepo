@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIButton {
-    static func customButton(imageName: String) -> UIButton {
+    static public func customButton(imageName: String) -> UIButton {
         let button = UIButton()
         var config = UIButton.Configuration.plain()
         config.background.imageContentMode = .scaleAspectFill

@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import TinyConstraints
+import Networking
+import CommonUIComponents
 
 class CountryCell: UITableViewCell {
     
@@ -68,31 +71,27 @@ class CountryCell: UITableViewCell {
         ContainerForCell.addSubview(nameLabel)
         ContainerForCell.addSubview(arrowIcon)
         
-        NSLayoutConstraint.activate([
-            // setup ContainerView
-            ContainerForCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            ContainerForCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            ContainerForCell.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            ContainerForCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            
-            // setup flag
-            flagView.leadingAnchor.constraint(equalTo: ContainerForCell.leadingAnchor, constant: 16),
-            flagView.topAnchor.constraint(equalTo: ContainerForCell.topAnchor, constant: 16),
-            flagView.heightAnchor.constraint(equalToConstant: ScreenSize.height * 0.03),
-            flagView.widthAnchor.constraint(equalToConstant: ScreenSize.width * 0.09),
-            
-            // setup name
-            nameLabel.topAnchor.constraint(equalTo: ContainerForCell.topAnchor, constant: 16),
-            nameLabel.trailingAnchor.constraint(equalTo: arrowIcon.leadingAnchor, constant: -10),
-            
-            // setup arrow
-            arrowIcon.topAnchor.constraint(equalTo: nameLabel.topAnchor),
-            arrowIcon.trailingAnchor.constraint(equalTo: ContainerForCell.trailingAnchor, constant: -16),
-            arrowIcon.heightAnchor.constraint(equalTo: arrowIcon.widthAnchor),
-            arrowIcon.widthAnchor.constraint(equalToConstant: ScreenSize.width * 0.05),
-            arrowIcon.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor)
-        ])
+        // MARK: TinyConstraints
         
+        // ContainerForCell
+        ContainerForCell.edgesToSuperview(insets: .init(top: 5, left: 20, bottom: 5, right: 20))
+                                          
+        // flagView
+        flagView.leading(to: ContainerForCell, offset: 16)
+        flagView.top(to: ContainerForCell, offset: 16)
+        flagView.height(ScreenSize.height * 0.03)
+        flagView.width(ScreenSize.width * 0.09)
+        
+        // nameLabel
+        nameLabel.top(to: ContainerForCell, offset: 16)
+        nameLabel.trailingToLeading(of: arrowIcon, offset: -10)
+        
+        // arrowIcon
+        arrowIcon.top(to: nameLabel)
+        arrowIcon.trailing(to: ContainerForCell, offset: -16)
+        arrowIcon.width(ScreenSize.width * 0.05)
+        arrowIcon.height(to: arrowIcon, arrowIcon.widthAnchor)
+        arrowIcon.centerY(to: nameLabel)
     }
     
     func configure(with country: Country) {
