@@ -6,6 +6,7 @@ class MainVC: UIViewController {
     private var background: Background = Background()
     private var topView: TopView = TopView()
     
+    var action: ((String) -> Void)?
     var zodiacName: String = ""
     private var inputStack: UIStackView = UIStackView()
     private var inputLabel: UILabel = {
@@ -145,7 +146,7 @@ class MainVC: UIViewController {
         ])
         
         nextButton.addAction(UIAction(handler: { [weak self] action in
-            guard let text = self?.inputTextField.text, text != ""  else { return }
+            guard let text = self?.inputTextField.text else { return }
             
             let lowercasedText = text.lowercased()
             
