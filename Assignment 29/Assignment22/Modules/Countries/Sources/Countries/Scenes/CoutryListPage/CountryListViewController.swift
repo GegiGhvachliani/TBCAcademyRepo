@@ -6,21 +6,23 @@
 //
 
 import UIKit
+import TinyConstraints
+import CommonUIComponents
 
-final class CountryListVC: UIViewController {
+public final class CountryListVC: UIViewController {
     // MARK: Properties
     private let titleLabel: UILabel = UILabel()
     private let tableView: UITableView = UITableView()
     private let viewModel: MainPageViewModel
     
     // MARK: Life Cycles
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupUI()
     }
     
-    init(viewModel: MainPageViewModel) {
+    public init(viewModel: MainPageViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -40,7 +42,6 @@ final class CountryListVC: UIViewController {
     
     private func setupTitleLabel() {
         view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.text = "Title"
         titleLabel.textColor = .black
@@ -50,7 +51,6 @@ final class CountryListVC: UIViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -59,18 +59,13 @@ final class CountryListVC: UIViewController {
 
     
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            // TitleLabel
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -10),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
-            titleLabel.heightAnchor.constraint(equalToConstant: 45),
-            
-            // tableView
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-        ])
+        // MARK: TinyConstraints
+        titleLabel.top(to: view.safeAreaLayoutGuide, offset: -10)
+        titleLabel.leading(to: view, offset: 18)
+        titleLabel.height(45)
+
+        tableView.edgesToSuperview(excluding: .top)
+        tableView.topToBottom(of: titleLabel, offset: 10)
     }
     
     
@@ -83,14 +78,14 @@ final class CountryListVC: UIViewController {
 }
 
 extension CountryListVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         ScreenSize.height * (60 / 812)
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.countriesCount
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath) as? CountryCell,
               let country = viewModel.countryAt(index: indexPath.row)
         else { return UITableViewCell() }
@@ -100,7 +95,7 @@ extension CountryListVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let country = viewModel.countries[indexPath.item]
         let viewModel = InfoPageViewModel(country: country)
         let infoPage = InfoPageViewController(infoPageViewModel: viewModel)

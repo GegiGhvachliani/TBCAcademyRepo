@@ -4,8 +4,9 @@
 //
 //  Created by Gegi Ghvachliani on 25.10.25.
 //
- 
-final class MainPageViewModel {
+import Networking
+
+public final class MainPageViewModel {
      var countries: CountryResponseData = []
     private var newtworkService: CountryNetworkService = CountryNetworkService()
     
@@ -15,7 +16,7 @@ final class MainPageViewModel {
         countries.count
     }
     
-    init() {
+    public init() {
         fetchCountries()
     }
     

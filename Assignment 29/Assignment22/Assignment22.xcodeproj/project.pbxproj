@@ -6,11 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		634837D52EBE9EDA00A80661 /* Countries in Frameworks */ = {isa = PBXBuildFile; productRef = 634837D42EBE9EDA00A80661 /* Countries */; };
+		634837D72EBE9EE300A80661 /* CommonUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 634837D62EBE9EE300A80661 /* CommonUIComponents */; };
+		634837D92EBE9EEC00A80661 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 634837D82EBE9EEC00A80661 /* Networking */; };
+		634837DC2EBEA08000A80661 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 634837DB2EBEA08000A80661 /* Networking */; };
+		634837DF2EBEA09100A80661 /* Countries in Frameworks */ = {isa = PBXBuildFile; productRef = 634837DE2EBEA09100A80661 /* Countries */; };
+		634837E22EBEA09E00A80661 /* CommonUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 634837E12EBEA09E00A80661 /* CommonUIComponents */; };
+		6373A3EE2EBE6ABA00856159 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 6373A3ED2EBE6ABA00856159 /* TinyConstraints */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		6397FA022EAD48C9004DB9A4 /* Assignment22.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment22.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6397FA022EAD48C9004DB9A4 /* Assignment22.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Assignment22.app; path = "/Users/gegighvachliani/Desktop/TBCAcademyRepo/Assignment 29/Assignment22/build/Debug-iphoneos/Assignment22.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		634837D02EBE937B00A80661 /* Exceptions for "Modules" folder in "Assignment22" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CommonUIComponents,
+				Countries,
+				Networking,
+			);
+			target = 6397FA012EAD48C9004DB9A4 /* Assignment22 */;
+		};
 		6397FA142EAD48CB004DB9A4 /* Exceptions for "Assignment22" folder in "Assignment22" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -21,6 +40,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		634837CC2EBE930600A80661 /* Modules */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				634837D02EBE937B00A80661 /* Exceptions for "Modules" folder in "Assignment22" target */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		6397FA042EAD48C9004DB9A4 /* Assignment22 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -36,26 +63,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6373A3EE2EBE6ABA00856159 /* TinyConstraints in Frameworks */,
+				634837DF2EBEA09100A80661 /* Countries in Frameworks */,
+				634837D72EBE9EE300A80661 /* CommonUIComponents in Frameworks */,
+				634837D92EBE9EEC00A80661 /* Networking in Frameworks */,
+				634837DC2EBEA08000A80661 /* Networking in Frameworks */,
+				634837D52EBE9EDA00A80661 /* Countries in Frameworks */,
+				634837E22EBEA09E00A80661 /* CommonUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		634837D32EBE9EDA00A80661 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6397F9F92EAD48C9004DB9A4 = {
 			isa = PBXGroup;
 			children = (
 				6397FA042EAD48C9004DB9A4 /* Assignment22 */,
-				6397FA032EAD48C9004DB9A4 /* Products */,
+				634837CC2EBE930600A80661 /* Modules */,
+				634837D32EBE9EDA00A80661 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		6397FA032EAD48C9004DB9A4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6397FA022EAD48C9004DB9A4 /* Assignment22.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,10 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				634837CC2EBE930600A80661 /* Modules */,
 				6397FA042EAD48C9004DB9A4 /* Assignment22 */,
 			);
 			name = Assignment22;
 			packageProductDependencies = (
+				6373A3ED2EBE6ABA00856159 /* TinyConstraints */,
+				634837D42EBE9EDA00A80661 /* Countries */,
+				634837D62EBE9EE300A80661 /* CommonUIComponents */,
+				634837D82EBE9EEC00A80661 /* Networking */,
+				634837DB2EBEA08000A80661 /* Networking */,
+				634837DE2EBEA09100A80661 /* Countries */,
+				634837E12EBEA09E00A80661 /* CommonUIComponents */,
 			);
 			productName = Assignment22;
 			productReference = 6397FA022EAD48C9004DB9A4 /* Assignment22.app */;
@@ -107,8 +149,14 @@
 			);
 			mainGroup = 6397F9F92EAD48C9004DB9A4;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6373A3EC2EBE6ABA00856159 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+				634837DA2EBEA08000A80661 /* XCLocalSwiftPackageReference "Modules/Networking" */,
+				634837DD2EBEA09100A80661 /* XCLocalSwiftPackageReference "Modules/Countries" */,
+				634837E02EBEA09E00A80661 /* XCLocalSwiftPackageReference "Modules/CommonUIComponents" */,
+			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 6397FA032EAD48C9004DB9A4 /* Products */;
+			productRefGroup = 6397F9F92EAD48C9004DB9A4;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -341,6 +389,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		634837DA2EBEA08000A80661 /* XCLocalSwiftPackageReference "Modules/Networking" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Modules/Networking;
+		};
+		634837DD2EBEA09100A80661 /* XCLocalSwiftPackageReference "Modules/Countries" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Modules/Countries;
+		};
+		634837E02EBEA09E00A80661 /* XCLocalSwiftPackageReference "Modules/CommonUIComponents" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Modules/CommonUIComponents;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6373A3EC2EBE6ABA00856159 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roberthein/TinyConstraints";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		634837D42EBE9EDA00A80661 /* Countries */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Countries;
+		};
+		634837D62EBE9EE300A80661 /* CommonUIComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommonUIComponents;
+		};
+		634837D82EBE9EEC00A80661 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+		634837DB2EBEA08000A80661 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+		634837DE2EBEA09100A80661 /* Countries */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Countries;
+		};
+		634837E12EBEA09E00A80661 /* CommonUIComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommonUIComponents;
+		};
+		6373A3ED2EBE6ABA00856159 /* TinyConstraints */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6373A3EC2EBE6ABA00856159 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			productName = TinyConstraints;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6397F9FA2EAD48C9004DB9A4 /* Project object */;
 }

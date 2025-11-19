@@ -7,8 +7,8 @@
 //
 import UIKit
 
-class InfoLabel: UILabel {
-    init(text: String) {
+public class InfoLabel: UILabel {
+    public init(text: String) {
         super.init(frame: .zero)
         self.text = text
         self.font = .systemFont(ofSize: ScreenSize.width * 0.034, weight: .regular)
@@ -21,8 +21,8 @@ class InfoLabel: UILabel {
     }
 }
 
-class TitleLabel: UILabel {
-    init(text: String) {
+public class TitleLabel: UILabel {
+    public init(text: String) {
         super.init(frame: .zero)
         self.text = text
         self.font = .systemFont(ofSize: ScreenSize.width * 0.04, weight: .bold)
@@ -35,8 +35,8 @@ class TitleLabel: UILabel {
     }
 }
     
-    class FlagInfoLabel: UILabel {
-        init(text: String) {
+public   class FlagInfoLabel: UILabel {
+        public  init(text: String) {
             super.init(frame: .zero)
             self.text = text
             self.numberOfLines = 0

@@ -6,6 +6,8 @@
 //  Created by Gegi Ghvachliani on 26.10.25.
 //
 import UIKit
+import TinyConstraints
+import CommonUIComponents
 
 class FlagInfoView: UIView {
     
@@ -16,7 +18,6 @@ class FlagInfoView: UIView {
         label.textAlignment = .center
         label.font = .systemFont(ofSize: ScreenSize.width * 0.05, weight: .semibold)
         label.textColor = .label
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -26,7 +27,6 @@ class FlagInfoView: UIView {
         view.layer.shadowColor = UIColor.gray.cgColor
         view.layer.shadowRadius = 2
         view.layer.shadowOffset = CGSize(width: 0, height: 5)
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -35,7 +35,6 @@ class FlagInfoView: UIView {
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 20
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -71,51 +70,45 @@ class FlagInfoView: UIView {
         addSubview(flagContainerView)
         flagContainerView.addSubview(flagView)
         
-        NSLayoutConstraint.activate([
-            // setup flagName
-            flagNameLabel.topAnchor.constraint(equalTo: topAnchor),
-            flagNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            flagNameLabel.heightAnchor.constraint(equalToConstant: 30),
-            flagNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            // setup container
-            flagContainerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            flagContainerView.topAnchor.constraint(equalTo: flagNameLabel.bottomAnchor, constant: 20),
-            flagContainerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            flagContainerView.heightAnchor.constraint(equalToConstant: 230),
-            
-            // setup flagView
-            flagView.topAnchor.constraint(equalTo: flagContainerView.topAnchor),
-            flagView.leadingAnchor.constraint(equalTo: flagContainerView.leadingAnchor),
-            flagView.trailingAnchor.constraint(equalTo: flagContainerView.trailingAnchor),
-            flagView.bottomAnchor.constraint(equalTo: flagContainerView.bottomAnchor)
-        ])
+        // flagName
+        flagNameLabel.top(to: self)
+        flagNameLabel.leading(to: self)
+        flagNameLabel.trailing(to: self)
+        flagNameLabel.height(30)
+        
+        // flagContainerView
+        flagContainerView.leading(to: self)
+        flagContainerView.trailing(to: self)
+        flagContainerView.topToBottom(of: flagNameLabel, offset: 20)
+        flagContainerView.height(230)
+        
+        // flagView
+        flagView.edgesToSuperview()
     }
     
     private func setupInfoSection() {
         addSubview(titleLabel)
         addSubview(infoLabel)
         
-        NSLayoutConstraint.activate([
-            // setup title
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            titleLabel.topAnchor.constraint(equalTo: flagContainerView.bottomAnchor, constant: 20),
-            
-            // setup info
-            infoLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            infoLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            infoLabel.trailingAnchor.constraint(equalTo: flagContainerView.trailingAnchor)
-        ])
+        // titleLabel
+        titleLabel.leading(to: self, offset: 16)
+        titleLabel.topToBottom(of: flagContainerView, offset: 20)
+        
+        // infoLabel
+        infoLabel.leading(to: titleLabel)
+        infoLabel.topToBottom(of: titleLabel, offset: 16)
+        infoLabel.trailing(to: flagContainerView)
     }
     
     private func setupLineView() {
         addSubview(lineView)
         
-        NSLayoutConstraint.activate([
-            lineView.leadingAnchor.constraint(equalTo: flagContainerView.leadingAnchor, constant: 20),
-            lineView.trailingAnchor.constraint(equalTo: flagContainerView.trailingAnchor, constant: -20),
-            lineView.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 30),
-            lineView.heightAnchor.constraint(equalToConstant: 1.5)
-        ])
+        lineView.leading(to: flagContainerView, offset: 20)
+        lineView.trailing(to: flagContainerView, offset: -20)
+        lineView.topToBottom(of: infoLabel, offset: 30)
+        lineView.height(1.5)
+        lineView.bottom(to: self)
+
     }
     
     // MARK: - Configure

@@ -7,14 +7,14 @@
 
 import UIKit
 
-enum CustomErrors: Error {
+public enum CustomErrors: Error {
     case wrongResponse
     case statusCode
 }
 
-final class CountryNetworkService {
-    
-    func fetchCountries(completion: @escaping (CountryResponseData?, Error?) -> Void) {
+public final class CountryNetworkService {
+    public init() {}
+    public func fetchCountries(completion: @escaping (CountryResponseData?, Error?) -> Void) {
         let urlString = "https://restcountries.com/v3.1/region/asia"
         let url = URL(string:urlString)
         let urlRequest = URLRequest(url: url!)
@@ -39,12 +39,12 @@ final class CountryNetworkService {
             
             do {
                 let countriesResponseData = try JSONDecoder().decode(CountryResponseData.self, from: data)
-
+                
                 print(countriesResponseData[0].name.common)
                 DispatchQueue.main.async {
                     completion(countriesResponseData, nil)
                 }
-
+                
             } catch {
                 print(error.localizedDescription)
             }
