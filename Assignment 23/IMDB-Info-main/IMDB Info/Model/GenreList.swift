@@ -6,5 +6,5 @@
 import Foundation
 
 struct GenreList: Decodable {
-    var genr: [Genre]
+    var genres: [Genre]
 }
