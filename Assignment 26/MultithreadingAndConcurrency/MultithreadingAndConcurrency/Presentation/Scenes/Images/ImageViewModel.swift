@@ -35,16 +35,70 @@ final class ImageViewModel {
     // დაასრულეთ მეთოდის იმპლემენტაცია GCD-ის გამოყენებით (DispatchGroup)
     func fetchImagesWithGCD() {
         // არ დაგავიწყდეთ, გადმოწერილი იმიჯები საბოლოოდ უნდა მოხვდეს images მასივში.
+        let group = DispatchGroup()
+        var downloadedImages: [UIImage] = []
+        
+        for url in imageUrls {
+            group.enter()
+            fetchAndProcessImage(from: url) { image in
+                if let image = image {
+                    DispatchQueue.main.sync {
+                        downloadedImages.append(image)
+                    }
+                }
+                group.leave()
+            }
+        }
+        group.notify(queue: .main) {
+            self.images = downloadedImages
+        }
     }
     
     // დაასრულეთ მეთოდის იმპლემენტაცია NSOperationQueue-ის გამოყენებით
     func fetchImagesWithOperationQueue() {
         // არ დაგავიწყდეთ, გადმოწერილი იმიჯები საბოლოოდ უნდა მოხვდეს images მასივში.
+        let blockOperation = BlockOperation()
+        let queue = OperationQueue()
+        var downloadedImages: [UIImage] = []
+        
+        blockOperation.qualityOfService = .userInteractive
+        
+        blockOperation.addExecutionBlock {
+            let group = DispatchGroup()
+            for url in self.imageUrls {
+                group.enter()
+                self.fetchAndProcessImage(from: url) { image in
+                    if let image = image {
+                        downloadedImages.append(image)
+                    }
+                    group.leave()
+                }
+            }
+            group.wait()
+        }
+        blockOperation.completionBlock = {
+            DispatchQueue.main.async {
+                self.images = downloadedImages
+            }
+        }
+        queue.addOperation(blockOperation)
     }
     
     // დაასრულეთ მეთოდის იმპლემენტაცია async/await-ის გამოყენებით (შეგიძლიათ დაიხმაროთ fetchAndProcessImageAsync())
     func fetchImagesWithAsyncAwait() {
         // არ დაგავიწყდეთ, გადმოწერილი იმიჯები საბოლოოდ უნდა მოხვდეს images მასივში.
+        Task {
+            var downloadedImages: [UIImage] = []
+            
+            for url in imageUrls {
+                if let image = await fetchAndProcessImageAsync(from: url) {
+                    downloadedImages.append(image)
+                }
+            }
+            await MainActor.run {
+                self.images = downloadedImages
+            }
+        }
     }
     
     func updateNumberOfImages(to count: Int) {
