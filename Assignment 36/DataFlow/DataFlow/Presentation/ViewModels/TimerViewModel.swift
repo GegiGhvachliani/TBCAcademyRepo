@@ -9,8 +9,7 @@ import Combine
 import Foundation
 
 class TimerViewModel: ObservableObject {
-    @Published var timers: [TimerModel] = [
-    ]
+    @Published var timers: [TimerModel] = []
     
     private let repository: TimerRepositoryProtocol
     
@@ -99,5 +98,4 @@ class TimerViewModel: ObservableObject {
             self?.workTimer()
         }
     }
-    
 }

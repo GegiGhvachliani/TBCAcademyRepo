@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct TimerModel: Identifiable, Equatable {
+struct TimerModel: Identifiable, Equatable, Codable {
     let id: UUID
     let title: String
     let time: Int
@@ -22,9 +22,10 @@ struct TimerModel: Identifiable, Equatable {
         self.status = .restarted
     }
     
-    enum Status: Equatable {
+    enum Status: Equatable, Codable {
         case restarted
         case running
         case paused
     }
 }
+
