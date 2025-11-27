@@ -22,6 +22,7 @@ struct MainView: View {
                     Text("Quiz")
 
                 }
+            
             UserPageView()
                 .tabItem {
                     Image(systemName: "text.rectangle.page")

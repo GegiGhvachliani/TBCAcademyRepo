@@ -30,7 +30,8 @@ struct AnswersListView: View {
                         }
                     }
                     .cornerRadius(15)
-                    .frame(height: 70)
+                    .frame(height: 60)
+                    .padding(.bottom, 10)
                 }
             }
         }
@@ -38,6 +39,7 @@ struct AnswersListView: View {
         .padding(.bottom, 50)
     }
     
+    // MARK: - Methods
     func backgroundColor(for index: Int) -> Color {
         switch viewModel.answerState {
         case .notAnswered:
@@ -77,8 +79,6 @@ struct AnswersListView: View {
             
         }
     }
-    
-    
 }
 
 #Preview {

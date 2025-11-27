@@ -22,7 +22,7 @@ struct UserPageView: View {
                 
                 CustomInfoStack(title: "Questions answered", description: String(viewModel.stats.answeredQuestions))
                 
-                CustomInfoStack(title: "Current answers", description: String(viewModel.stats.correctAnswers))
+                CustomInfoStack(title: "Correct answers", description: String(viewModel.stats.correctAnswers))
                 
                 Text("Stats:")
                     .font(Font.custom("Sen", size: 18))
@@ -31,15 +31,25 @@ struct UserPageView: View {
                     .padding(.leading, 30)
                 
                 let value = Double(viewModel.stats.correctAnswers)
-                let total = Double(viewModel.stats.answeredQuestions) > 0 ?
-                            Double(viewModel.stats.answeredQuestions) :
-                            1.0
+                let total = Double(viewModel.stats.answeredQuestions)
                     
-                ProgressView(value: value, total: total)
-                    .background(.red)
-                    .foregroundStyle(.green)
+                CustomProgressView(value: value, total: total)
                 
                 Spacer()
+                
+                Button {
+                    viewModel.resetQuiz()
+                } label: {
+                    Text("reset")
+                        .font(Font.custom("Sen", size: 20))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 30)
+                        .padding(.vertical, 7)
+                        .background(.incorrectAnswer)
+                        .cornerRadius(20)
+                }
+                .padding(.bottom, 20)
+
             }
             .padding(.top, 40)
         }

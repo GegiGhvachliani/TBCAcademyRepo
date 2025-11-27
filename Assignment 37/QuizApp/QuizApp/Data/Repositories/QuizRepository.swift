@@ -131,7 +131,6 @@ class QuizRepository: QuizRepositoryProtocol {
             correctAnswerIndex: 0
         )
     ]
-
     
     private static let quizKey = "quizKey"
     
@@ -154,6 +153,7 @@ class QuizRepository: QuizRepositoryProtocol {
         saveToUserDefaults(stats)
     }
     
+    // MARK: - Save to UserDefaults
     private func saveToUserDefaults(_ stats: QuizStats) {
         let encoder = JSONEncoder()
         

@@ -19,10 +19,6 @@ class QuizViewModel: ObservableObject {
         return questions[index]
     }
     
-//    var isQuizFinished: Bool {
-//        stats.currentQuestionNumber > questions.count
-//    }
-    
     private let repository: QuizRepositoryProtocol
     
     private let answerQuestionUseCase: AnswerQuestionUseCase

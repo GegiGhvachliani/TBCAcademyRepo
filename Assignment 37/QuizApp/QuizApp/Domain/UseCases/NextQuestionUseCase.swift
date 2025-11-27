@@ -21,5 +21,4 @@ class NextQuestionUseCase {
         
         return stats
     }
-    
 }
