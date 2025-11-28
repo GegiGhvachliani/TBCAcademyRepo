@@ -23,7 +23,9 @@ struct TimerAdderView: View {
                 .padding(12)
                 .background(.textField)
                 .foregroundColor(.white)
+                .font(Font.system(size: 15))
                 .cornerRadius(10)
+                .padding(.top, 35)
             
             HStack (spacing: 15) {
                 
@@ -31,19 +33,21 @@ struct TimerAdderView: View {
                     .padding(12)
                     .background(.textField)
                     .foregroundColor(.white)
+                    .font(Font.system(size: 15))
                     .cornerRadius(10)
                 TextField("", text: $minutes, prompt: Text("წთ").foregroundStyle(.gray.opacity(0.5)))
                     .padding(12)
                     .background(.textField)
                     .foregroundColor(.white)
+                    .font(Font.system(size: 15))
                     .cornerRadius(10)
                 TextField("", text: $seconds, prompt: Text("წმ").foregroundStyle(.gray.opacity(0.5)))
                     .padding(12)
                     .background(.textField)
                     .foregroundColor(.white)
+                    .font(Font.system(size: 15))
                     .cornerRadius(10)
             }
-            
             .multilineTextAlignment(.center)
             
             Button {
@@ -61,10 +65,10 @@ struct TimerAdderView: View {
             } label: {
                 Text("დამატება")
                     .padding(.horizontal, 40)
-                    .padding(.vertical, 12)
+                    .padding(.vertical, 10)
                     .background(.blue)
                     .foregroundStyle(.white)
-                    .font(.system(size: 20))
+                    .font(.system(size: 18))
                     .cornerRadius(10)
             }
             

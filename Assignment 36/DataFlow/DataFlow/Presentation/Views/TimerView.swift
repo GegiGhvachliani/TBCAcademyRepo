@@ -42,7 +42,8 @@ struct TimerView: View {
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
-                    .frame(height: 80)
+                    .padding(.bottom, 20)
+                    .frame(height: 90)
                     .background(.timerBackground)
                 
                 ScrollView {
@@ -53,6 +54,7 @@ struct TimerView: View {
                         .cornerRadius(20)
                     }
                 }
+                .padding(.top, 10)
                 .padding(.horizontal, 15)
                 TimerAdderView(viewModel: viewModel)
 
@@ -63,8 +65,6 @@ struct TimerView: View {
     }
 }
 
-#Preview {
-    TimerView()
-}
+
 
 

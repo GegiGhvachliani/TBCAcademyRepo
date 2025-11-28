@@ -18,6 +18,7 @@ struct TimerRow: View {
                 Text(timer.title)
                     .font(.headline)
                     .foregroundStyle(.white)
+                    .padding(.leading, 10)
                 Spacer()
                 
                 Button {
@@ -25,12 +26,14 @@ struct TimerRow: View {
                 } label: {
                     Image(systemName: "trash")
                         .foregroundStyle(.red)
+                        .offset(x: 0, y: -6)
                 }
             }
             
             Text(formatTime(timer.remainingSeconds))
                 .font(.system(size: 40, weight: .bold))
                 .foregroundColor(.timerTime)
+                .padding(.top, 5)
             
             HStack {
                 Button {
@@ -41,7 +44,7 @@ struct TimerRow: View {
                     }
                 } label: {
                     Text(timer.status == .running ? "პაუზა" : "დაწყება")
-                        .padding(.horizontal, 15)
+                        .padding(.horizontal, 17)
                         .padding(.vertical, 10)
                         .background(timer.status == .running ? .pauseButton : .startButton)
                         .foregroundColor(.white)
@@ -53,7 +56,7 @@ struct TimerRow: View {
                 } label: {
                     Text("გადატვირთვა")
                 }
-                .padding(.horizontal, 15)
+                .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(Color.red)
                 .foregroundColor(.white)
@@ -73,4 +76,9 @@ func formatTime(_ seconds: Int) -> String {
     let m = (seconds % 3600) / 60
     let s = seconds % 60
     return String(format: "%02d:%02d:%02d", h, m, s)
+}
+
+
+#Preview {
+    TimerView()
 }
