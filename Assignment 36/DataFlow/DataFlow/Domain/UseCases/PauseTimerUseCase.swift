@@ -5,14 +5,16 @@
 //  Created by Gegi Ghvachliani on 25.11.25.
 //
 
+import Foundation
+
 class PauseTimerUseCase {
+    private let repository: TimerRepositoryProtocol
     
-    func pauseTimer(timer: TimerModel) -> TimerModel {
-        guard timer.status == .running else { return timer }
-        
-        var pausedTimer = timer
-        pausedTimer.status = .paused
-        
-        return pausedTimer
+    init(repository: TimerRepositoryProtocol) {
+        self.repository = repository
+    }
+    
+    func pauseTimer(id: UUID) {
+        repository.pauseTimer(id: id)
     }
 }

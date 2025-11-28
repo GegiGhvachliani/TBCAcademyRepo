@@ -11,10 +11,10 @@ func makeTimerViewModel() -> TimerViewModel {
     let repository: TimerRepositoryProtocol = TimerRepository()
     
     let addTimerUseCase: AddTimerUseCase = AddTimerUseCase(repository: repository)
-    let pauseTimerUseCase: PauseTimerUseCase = PauseTimerUseCase()
-    let restartTimerUseCase: RestartTimerUseCase = RestartTimerUseCase()
-    let startTimerUseCase: StartTimerUseCase = StartTimerUseCase()
-    let timerWorkginPrincipleUseCase: TimerWorkingPrincipleUseCase = TimerWorkingPrincipleUseCase()
+    let pauseTimerUseCase: PauseTimerUseCase = PauseTimerUseCase(repository: repository)
+    let restartTimerUseCase: RestartTimerUseCase = RestartTimerUseCase(repository: repository)
+    let startTimerUseCase: StartTimerUseCase = StartTimerUseCase(repository: repository)
+    let timerWorkginPrincipleUseCase: TimerWorkingPrincipleUseCase = TimerWorkingPrincipleUseCase(repository: repository)
     
     let viewModel = TimerViewModel(repository: repository,
                                    addTimerUsecase: addTimerUseCase,

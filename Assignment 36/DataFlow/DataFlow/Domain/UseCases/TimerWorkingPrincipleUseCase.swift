@@ -5,19 +5,16 @@
 //  Created by Gegi Ghvachliani on 25.11.25.
 //
 
+import Foundation
+
 class TimerWorkingPrincipleUseCase {
-    func timerWorkingPrinciple(timer: TimerModel) -> TimerModel {
-        guard timer.status == .running else {
-            return timer
-        }
-        
-        var updatedTimer = timer
-        updatedTimer.remainingSeconds -= 1
-        
-        if updatedTimer.remainingSeconds == 0 {
-            updatedTimer.status = .restarted
-        }
-        
-        return updatedTimer
+    private let repository: TimerRepositoryProtocol
+    
+    init(repository: TimerRepositoryProtocol) {
+        self.repository = repository
+    }
+    
+    func timerWork(id: UUID) {
+        repository.timerWork(id: id)
     }
 }

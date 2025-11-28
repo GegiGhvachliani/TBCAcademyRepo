@@ -42,55 +42,43 @@ class TimerViewModel: ObservableObject {
         let result = addTimerUsecase.addTimer(title: title, hours: hours, minutes: minutes, seconds: seconds)
         
         switch result {
-            
-        case .success(let timer):
-            timers.append(timer)
+        case .success:
+            loadTimers()
         case .failure(let error):
             print("error: \(error)")
         }
     }
     
-    func startTimer(timer: TimerModel) {
-        let startedTimer = startTimerUseCase.startTimer(timer: timer)
-        repository.update(timer: startedTimer)
-        
-        if let index = timers.firstIndex(where: { $0.id == startedTimer.id }) {
-            timers[index] = startedTimer
-        }
+    func startTimer(timerID: UUID) {
+        startTimerUseCase.startTimer(id: timerID)
+        loadTimers()
     }
     
-    func pauseTimer(timer: TimerModel) {
-        let pausedTimer = pauseTimerUseCase.pauseTimer(timer: timer)
-        repository.update(timer: pausedTimer)
-        
-        if let index = timers.firstIndex(where: { $0.id == pausedTimer.id }) {
-            timers[index] = pausedTimer
-        }
+    func pauseTimer(timerID: UUID) {
+        pauseTimerUseCase.pauseTimer(id: timerID)
+        loadTimers()
+
     }
     
-    func restartTimer(timer: TimerModel) {
-        let restartedTimer = restartTimerUseCase.restartTimer(timer: timer)
-        repository.update(timer: restartedTimer)
-        
-        if let index = timers.firstIndex(where: { $0.id == restartedTimer.id }) {
-            timers[index] = restartedTimer
-        }
+    func restartTimer(timerID: UUID) {
+        restartTimerUseCase.restartTimer(id: timerID)
+        loadTimers()
     }
     
-    func deleteTimer(id: UUID) {
-        repository.delete(id: id)
-        
-        timers.removeAll(where: { $0.id == id } )
+    func deleteTimer(timerID: UUID) {
+        repository.delete(id: timerID)
+        loadTimers()
+
     }
     
     func workTimer() {
-        for index in 0..<timers.count {
-            if timers[index].status == .running {
-                let updatedTimer = timerWorkingUseCase.timerWorkingPrinciple(timer: timers[index])
-                repository.update(timer: updatedTimer)
-                timers[index] = updatedTimer
-            }
+        let runningTimers = timers.filter { $0.status == .running }
+        
+        for timer in runningTimers {
+            timerWorkingUseCase.timerWork(id: timer.id)
         }
+        
+        loadTimers()
     }
     
     private func startTicking() {

@@ -42,11 +42,45 @@ class TimerRepository: TimerRepositoryProtocol {
         saveToUserDefault(timer: timers)
     }
     
-    func update(timer: TimerModel) {
-        if let index = timers.firstIndex(where: { $0.id == timer.id}) {
-            timers[index] = timer
-            saveToUserDefault(timer: timers)
+    func startTimer(id: UUID) {
+        guard let index = timers.firstIndex(where: { $0.id == id }) else { return }
+        
+        guard timers[index].remainingSeconds > 0 else {
+            return
         }
+        
+        timers[index].status = .running
+        saveToUserDefault(timer: timers)
+    }
+    
+    func pauseTimer(id: UUID) {
+        guard let index = timers.firstIndex(where: { $0.id == id }) else { return }
+        
+        guard timers[index].status == .running else { return }
+        
+        timers[index].status = .paused
+        saveToUserDefault(timer: timers)
+    }
+    
+    func restartTimer(id: UUID) {
+        guard let index = timers.firstIndex(where: { $0.id == id }) else { return }
+        
+        timers[index].status = .restarted
+        timers[index].remainingSeconds = timers[index].time
+        saveToUserDefault(timer: timers)
+    }
+    
+    func timerWork(id: UUID) {
+        guard let index = timers.firstIndex(where: { $0.id == id }) else { return }
+        guard timers[index].status == .running else { return }
+        
+        timers[index].remainingSeconds -= 1
+        
+        if timers[index].remainingSeconds == 0 {
+            timers[index].status = .restarted
+        }
+        
+        saveToUserDefault(timer: timers)
     }
     
     func getAll() -> [TimerModel] {
