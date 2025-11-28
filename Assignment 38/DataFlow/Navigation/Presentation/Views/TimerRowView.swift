@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimerRow: View {
     @ObservedObject var viewModel: TimerViewModel
+    @State var showDeleteAlert: Bool = false
     var timer: TimerModel
     
     var body: some View {
@@ -22,11 +23,17 @@ struct TimerRow: View {
                 Spacer()
                 
                 Button {
-                    viewModel.deleteTimer(timerID: timer.id)
+                    showDeleteAlert = true
                 } label: {
                     Image(systemName: "trash")
                         .foregroundStyle(.red)
                         .offset(x: 0, y: -6)
+                }
+                .alert("Delete Timer?", isPresented: $showDeleteAlert) {
+                    Button("Cancel", role: .cancel) {}
+                    Button("Delete", role: .destructive) {
+                        viewModel.deleteTimer(timerID: timer.id)
+                    }
                 }
             }
             

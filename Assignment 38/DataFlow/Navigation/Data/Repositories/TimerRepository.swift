@@ -8,8 +8,8 @@ import Foundation
 
 class TimerRepository: TimerRepositoryProtocol {
     private var timers: [TimerModel] = [
-        TimerModel(title: "someTimer", time: 400),
-        TimerModel(title: "someTimer1", time: 1400),
+        TimerModel(title: "ტაიმერი 1", time: 400),
+        TimerModel(title: "ტაიმერი 2", time: 1400),
   
     ]
     
