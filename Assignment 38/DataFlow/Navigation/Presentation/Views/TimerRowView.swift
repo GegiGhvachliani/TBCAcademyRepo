@@ -22,7 +22,7 @@ struct TimerRow: View {
                 Spacer()
                 
                 Button {
-                    viewModel.deleteTimer(id: timer.id)
+                    viewModel.deleteTimer(timerID: timer.id)
                 } label: {
                     Image(systemName: "trash")
                         .foregroundStyle(.red)
@@ -38,9 +38,9 @@ struct TimerRow: View {
             HStack {
                 Button {
                     if timer.status == .running {
-                        viewModel.pauseTimer(timer: timer)
+                        viewModel.pauseTimer(timerID: timer.id)
                     } else {
-                        viewModel.startTimer(timer: timer)
+                        viewModel.startTimer(timerID: timer.id)
                     }
                 } label: {
                     Text(timer.status == .running ? "პაუზა" : "დაწყება")
@@ -52,7 +52,7 @@ struct TimerRow: View {
                 }
                 
                 Button {
-                    viewModel.restartTimer(timer: timer)
+                    viewModel.restartTimer(timerID: timer.id)
                 } label: {
                     Text("გადატვირთვა")
                 }

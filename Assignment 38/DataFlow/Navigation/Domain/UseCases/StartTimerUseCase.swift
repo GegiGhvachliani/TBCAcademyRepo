@@ -5,18 +5,20 @@
 //  Created by Gegi Ghvachliani on 25.11.25.
 //
 
+import Foundation
+
 enum StartError: Error {
     case noTime
 }
 
 class StartTimerUseCase {
-
-    func startTimer(timer: TimerModel) -> TimerModel {
-        guard timer.remainingSeconds > 0 else { return timer }
-         
-        var updatedTimer = timer
-        updatedTimer.status = .running
-        
-        return updatedTimer
+    private let repository: TimerRepositoryProtocol
+    
+    init(repository: TimerRepositoryProtocol) {
+        self.repository = repository
+    }
+    
+    func startTimer(id: UUID) {
+        repository.startTimer(id: id)
     }
 }
