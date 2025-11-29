@@ -30,7 +30,7 @@ struct TimerRow: View {
                 }
             }
             
-            Text(formatTime(timer.remainingSeconds))
+            Text(TimeFormater.formatTime(timer.remainingSeconds))
                 .font(.system(size: 40, weight: .bold))
                 .foregroundColor(.timerTime)
                 .padding(.top, 5)
@@ -70,14 +70,6 @@ struct TimerRow: View {
         .listRowSeparator(.hidden)
     }
 }
-
-func formatTime(_ seconds: Int) -> String {
-    let h = seconds / 3600
-    let m = (seconds % 3600) / 60
-    let s = seconds % 60
-    return String(format: "%02d:%02d:%02d", h, m, s)
-}
-
 
 #Preview {
     TimerView()

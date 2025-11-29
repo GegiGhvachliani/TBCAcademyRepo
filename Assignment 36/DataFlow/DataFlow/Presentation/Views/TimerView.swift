@@ -7,28 +7,9 @@
 
 import SwiftUI
 
-func makeTimerViewModel() -> TimerViewModel {
-    let repository: TimerRepositoryProtocol = TimerRepository()
-    
-    let addTimerUseCase: AddTimerUseCase = AddTimerUseCase(repository: repository)
-    let pauseTimerUseCase: PauseTimerUseCase = PauseTimerUseCase(repository: repository)
-    let restartTimerUseCase: RestartTimerUseCase = RestartTimerUseCase(repository: repository)
-    let startTimerUseCase: StartTimerUseCase = StartTimerUseCase(repository: repository)
-    let timerWorkginPrincipleUseCase: TimerWorkingPrincipleUseCase = TimerWorkingPrincipleUseCase(repository: repository)
-    
-    let viewModel = TimerViewModel(repository: repository,
-                                   addTimerUsecase: addTimerUseCase,
-                                   startTimerUseCase: startTimerUseCase,
-                                   pauseTimerUseCase: pauseTimerUseCase,
-                                   restartTimerUseCase: restartTimerUseCase,
-                                   timerWorkingUseCase: timerWorkginPrincipleUseCase
-    )
-    
-    return viewModel
-}
 struct TimerView: View {
     
-    @StateObject private var viewModel = makeTimerViewModel()
+    @StateObject private var viewModel = TimerViewModel.create()
     
     var body: some View {
         ZStack {
