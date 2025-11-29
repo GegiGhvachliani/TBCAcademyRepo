@@ -18,35 +18,13 @@ struct TimerAdderView: View {
     var body: some View {
         
         VStack(spacing: 15) {
-            
-            TextField("", text: $title, prompt: Text("ტაიმერის სახელი...").foregroundStyle(.gray.opacity(0.5)))
-                .padding(12)
-                .background(.textField)
-                .foregroundColor(.white)
-                .font(Font.system(size: 15))
-                .cornerRadius(10)
+            TimerTextField(placeholder: "ტაიმერის სახელი", text: $title)
                 .padding(.top, 35)
             
             HStack (spacing: 15) {
-                
-                TextField("", text: $hours, prompt: Text("სთ").foregroundStyle(.gray.opacity(0.5)))
-                    .padding(12)
-                    .background(.textField)
-                    .foregroundColor(.white)
-                    .font(Font.system(size: 15))
-                    .cornerRadius(10)
-                TextField("", text: $minutes, prompt: Text("წთ").foregroundStyle(.gray.opacity(0.5)))
-                    .padding(12)
-                    .background(.textField)
-                    .foregroundColor(.white)
-                    .font(Font.system(size: 15))
-                    .cornerRadius(10)
-                TextField("", text: $seconds, prompt: Text("წმ").foregroundStyle(.gray.opacity(0.5)))
-                    .padding(12)
-                    .background(.textField)
-                    .foregroundColor(.white)
-                    .font(Font.system(size: 15))
-                    .cornerRadius(10)
+                TimerTextField(placeholder: "სთ", text: $hours)
+                TimerTextField(placeholder: "წთ", text: $minutes)
+                TimerTextField(placeholder: "წმ", text: $seconds)
             }
             .multilineTextAlignment(.center)
             
