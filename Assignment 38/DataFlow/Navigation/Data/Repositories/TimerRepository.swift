@@ -9,8 +9,7 @@ import Foundation
 class TimerRepository: TimerRepositoryProtocol {
     private var timers: [TimerModel] = [
         TimerModel(title: "ტაიმერი 1", time: 400),
-        TimerModel(title: "ტაიმერი 2", time: 1400),
-  
+        TimerModel(title: "ტაიმერი 2", time: 1400)
     ]
     
     private static let timersKey: String = "timersKey"
@@ -90,8 +89,19 @@ class TimerRepository: TimerRepositoryProtocol {
     func delete(id: UUID) {
         timers.removeAll{ $0.id == id }
         saveToUserDefault(timer: timers)
-
+        
     }
     
-    
+    func saveSession(id: UUID) {
+        guard let index = timers.firstIndex(where: { $0.id == id }) else { return }
+        
+        let duration = timers[index].time - timers[index].remainingSeconds
+        
+        guard duration > 0 else { return }
+        
+        let session = TimerSession(date: Date(), duration: duration)
+        timers[index].sessions.append(session)
+        
+        saveToUserDefault(timer: timers)
+    }
 }

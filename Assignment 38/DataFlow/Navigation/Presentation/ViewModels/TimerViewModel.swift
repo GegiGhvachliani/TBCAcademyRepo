@@ -18,16 +18,18 @@ class TimerViewModel: ObservableObject {
     private let pauseTimerUseCase: PauseTimerUseCase
     private let restartTimerUseCase: RestartTimerUseCase
     private let timerWorkingUseCase: TimerWorkingPrincipleUseCase
+    private let saveSessionUseCase: SaveSessionUseCase
     
     private var ticker: Timer?
 
-    init(repository: TimerRepositoryProtocol, addTimerUsecase: AddTimerUseCase, startTimerUseCase: StartTimerUseCase, pauseTimerUseCase: PauseTimerUseCase, restartTimerUseCase: RestartTimerUseCase, timerWorkingUseCase: TimerWorkingPrincipleUseCase) {
+    init(repository: TimerRepositoryProtocol, addTimerUsecase: AddTimerUseCase, startTimerUseCase: StartTimerUseCase, pauseTimerUseCase: PauseTimerUseCase, restartTimerUseCase: RestartTimerUseCase, timerWorkingUseCase: TimerWorkingPrincipleUseCase, saveSessionUseCase: SaveSessionUseCase) {
         self.repository = repository
         self.addTimerUsecase = addTimerUsecase
         self.startTimerUseCase = startTimerUseCase
         self.pauseTimerUseCase = pauseTimerUseCase
         self.restartTimerUseCase = restartTimerUseCase
         self.timerWorkingUseCase = timerWorkingUseCase
+        self.saveSessionUseCase = saveSessionUseCase
         
         loadTimers()
         startTicking()
@@ -61,6 +63,7 @@ class TimerViewModel: ObservableObject {
     }
     
     func restartTimer(timerID: UUID) {
+        saveSessionUseCase.saveSession(id: timerID)
         restartTimerUseCase.restartTimer(id: timerID)
         loadTimers()
     }

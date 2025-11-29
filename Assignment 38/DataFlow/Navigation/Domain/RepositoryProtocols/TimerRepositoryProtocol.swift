@@ -14,4 +14,5 @@ protocol TimerRepositoryProtocol {
     func pauseTimer(id: UUID)
     func restartTimer(id: UUID)
     func timerWork(id: UUID)
+    func saveSession(id: UUID)
 }
