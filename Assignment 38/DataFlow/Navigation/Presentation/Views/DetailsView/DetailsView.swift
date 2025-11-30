@@ -22,9 +22,8 @@ struct DetailsView: View {
                         .foregroundStyle(.white)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.bottom, 25)
-                        .frame(height: 80)
-                        .background(.red)
+                        .frame(height: 100)
+                        .background(.timerBackground)
                     
                     Button {
                         navigationPath.removeLast()
@@ -35,7 +34,6 @@ struct DetailsView: View {
                             .foregroundStyle(.white)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .frame(height: 17)
-                            .padding(.bottom, 25)
                             .padding(.leading, 20)
                     }
                 }

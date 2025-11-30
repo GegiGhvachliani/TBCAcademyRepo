@@ -26,15 +26,18 @@ struct TimerView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 20)
                         .padding(.bottom, 20)
-                        .frame(height: 90)
+                        .frame(height: 80)
                         .background(.timerBackground)
                     
                     ScrollView {
                         VStack(spacing: 15) {
                             ForEach(viewModel.timers) { timer in
-                                NavigationLink(value: timer) {
+                                Button {
+                                    navigationPath.append(timer)
+                                } label: {
                                     TimerRow(viewModel: viewModel, timer: timer)
                                 }
+
                             }
                             .cornerRadius(20)
                         }
