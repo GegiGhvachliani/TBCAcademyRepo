@@ -7,33 +7,13 @@
 
 import SwiftUI
 
-func makeTimerViewModel() -> TimerViewModel {
-    let repository: TimerRepositoryProtocol = TimerRepository()
-    
-    let addTimerUseCase: AddTimerUseCase = AddTimerUseCase(repository: repository)
-    let pauseTimerUseCase: PauseTimerUseCase = PauseTimerUseCase(repository: repository)
-    let restartTimerUseCase: RestartTimerUseCase = RestartTimerUseCase(repository: repository)
-    let startTimerUseCase: StartTimerUseCase = StartTimerUseCase(repository: repository)
-    let timerWorkginPrincipleUseCase: TimerWorkingPrincipleUseCase = TimerWorkingPrincipleUseCase(repository: repository)
-    let saveSessionUseCase = SaveSessionUseCase(repository: repository)
-    
-    let viewModel = TimerViewModel(repository: repository,
-                                   addTimerUsecase: addTimerUseCase,
-                                   startTimerUseCase: startTimerUseCase,
-                                   pauseTimerUseCase: pauseTimerUseCase,
-                                   restartTimerUseCase: restartTimerUseCase,
-                                   timerWorkingUseCase: timerWorkginPrincipleUseCase,
-                                   saveSessionUseCase: saveSessionUseCase
-    )
-    
-    return viewModel
-}
+
 struct TimerView: View {
-    
-    @StateObject private var viewModel = makeTimerViewModel()
+    @StateObject private var viewModel = TimerViewModel.makeTimerViewModel()
+    @State private var navigationPath = NavigationPath()
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPath) {
             ZStack {
                 Color.background
                     .ignoresSafeArea()
@@ -55,12 +35,14 @@ struct TimerView: View {
                                 NavigationLink(value: timer) {
                                     TimerRow(viewModel: viewModel, timer: timer)
                                 }
-                                .buttonStyle(PlainButtonStyle())
                             }
                             .cornerRadius(20)
                         }
                         .navigationDestination(for: TimerModel.self) { timer in
-                            DetailsView(timer: timer)
+                            DetailsView(
+                                timer: timer,
+                                navigationPath: $navigationPath
+                            )
                         }
                     }
                     .padding(.top, 10)
@@ -74,6 +56,8 @@ struct TimerView: View {
     }
 }
 
-
+#Preview {
+    TimerView()
+}
 
 

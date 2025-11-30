@@ -49,7 +49,6 @@ struct TimerAdderView: View {
                     .font(.system(size: 18))
                     .cornerRadius(10)
             }
-            
         }
         .padding(.horizontal, 20)
         .font(.footnote)

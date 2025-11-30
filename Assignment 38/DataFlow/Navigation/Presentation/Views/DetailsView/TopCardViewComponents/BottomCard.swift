@@ -57,7 +57,7 @@ struct BottomCard: View {
                                 .padding(.top, 2)
                             Spacer()
                             let duration = timer.sessions[session].duration
-                            Text("\(formatTime(duration))")
+                            Text("\(TimeFormatter.formatTime(duration))")
                                 .foregroundStyle(.white)
                                 .fontWeight(.medium)
                                 .font(Font.system(size: 14))
@@ -74,6 +74,6 @@ struct BottomCard: View {
     }
 
 #Preview {
-    TimerView()
+    BottomCard(timer: TimerModel(title: "ვარჯიში", time: 332))
 }
 
