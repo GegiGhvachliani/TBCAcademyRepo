@@ -17,11 +17,8 @@ struct UserPageView: View {
             
             VStack(spacing: 30) {
                 Image("ProfileImage")
-                
                 CustomInfoStack(title: "Username", description: "Akaki")
-                
                 CustomInfoStack(title: "Questions answered", description: String(viewModel.stats.answeredQuestions))
-                
                 CustomInfoStack(title: "Correct answers", description: String(viewModel.stats.correctAnswers))
                 
                 Text("Stats:")

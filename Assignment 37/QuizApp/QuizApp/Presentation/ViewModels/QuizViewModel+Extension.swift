@@ -22,7 +22,6 @@ extension QuizViewModel {
     static func createForPreview() -> QuizViewModel {
           let repository = QuizRepository()
           
-          // Force reset stats for preview
           let resetUseCase = ResetQuizUseCase(repository: repository)
           _ = resetUseCase.resetQuiz()
           
