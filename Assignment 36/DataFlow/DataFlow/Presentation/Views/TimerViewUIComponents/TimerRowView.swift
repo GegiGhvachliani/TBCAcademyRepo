@@ -44,7 +44,7 @@ struct TimerRow: View {
                     }
                 } label: {
                     Text(timer.status == .running ? "პაუზა" : "დაწყება")
-                        .padding(.horizontal, 17)
+                        .padding(.horizontal, 20)
                         .padding(.vertical, 10)
                         .background(timer.status == .running ? .pauseButton : .startButton)
                         .foregroundColor(.white)

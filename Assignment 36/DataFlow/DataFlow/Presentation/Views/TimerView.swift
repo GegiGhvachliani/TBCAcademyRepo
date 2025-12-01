@@ -38,10 +38,8 @@ struct TimerView: View {
                 .padding(.top, 10)
                 .padding(.horizontal, 15)
                 TimerAdderView(viewModel: viewModel)
-
             }
             .padding(.bottom, 0)
-
         }
     }
 }

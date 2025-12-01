@@ -14,20 +14,33 @@ class TimerViewModel: ObservableObject {
     private let repository: TimerRepositoryProtocol
     
     private let addTimerUsecase: AddTimerUseCase
+    private let deleteTimerUseCase: DeleteTimerUseCase
     private let startTimerUseCase: StartTimerUseCase
     private let pauseTimerUseCase: PauseTimerUseCase
     private let restartTimerUseCase: RestartTimerUseCase
     private let timerWorkingUseCase: TimerWorkingPrincipleUseCase
+    private let notificationService: TimerNotificationServiceProtocol
     
     private var ticker: Timer?
-
-    init(repository: TimerRepositoryProtocol, addTimerUsecase: AddTimerUseCase, startTimerUseCase: StartTimerUseCase, pauseTimerUseCase: PauseTimerUseCase, restartTimerUseCase: RestartTimerUseCase, timerWorkingUseCase: TimerWorkingPrincipleUseCase) {
+    
+    init(
+        repository: TimerRepositoryProtocol,
+        addTimerUsecase: AddTimerUseCase,
+        deleteTimerUseCase: DeleteTimerUseCase,
+        startTimerUseCase: StartTimerUseCase,
+        pauseTimerUseCase: PauseTimerUseCase,
+        restartTimerUseCase: RestartTimerUseCase,
+        timerWorkingUseCase: TimerWorkingPrincipleUseCase,
+        notificationService: TimerNotificationServiceProtocol
+    ) {
         self.repository = repository
         self.addTimerUsecase = addTimerUsecase
+        self.deleteTimerUseCase = deleteTimerUseCase
         self.startTimerUseCase = startTimerUseCase
         self.pauseTimerUseCase = pauseTimerUseCase
         self.restartTimerUseCase = restartTimerUseCase
         self.timerWorkingUseCase = timerWorkingUseCase
+        self.notificationService = notificationService
         
         loadTimers()
         startTicking()
@@ -37,9 +50,8 @@ class TimerViewModel: ObservableObject {
         timers = repository.getAll()
     }
     
-    func addTimer(title: String, hours: Int, minutes: Int, seconds: Int)
-    {
-        let result = addTimerUsecase.addTimer(title: title, hours: hours, minutes: minutes, seconds: seconds)
+    func addTimer(title: String, hours: Int, minutes: Int, seconds: Int) {
+        let result = addTimerUsecase.execute(title: title, hours: hours, minutes: minutes, seconds: seconds)
         
         switch result {
         case .success:
@@ -50,32 +62,37 @@ class TimerViewModel: ObservableObject {
     }
     
     func startTimer(timerID: UUID) {
-        startTimerUseCase.startTimer(id: timerID)
+        startTimerUseCase.execute(id: timerID)
         loadTimers()
     }
     
     func pauseTimer(timerID: UUID) {
-        pauseTimerUseCase.pauseTimer(id: timerID)
+        pauseTimerUseCase.execute(id: timerID)
         loadTimers()
-
+        
     }
     
     func restartTimer(timerID: UUID) {
-        restartTimerUseCase.restartTimer(id: timerID)
+        restartTimerUseCase.execute(id: timerID)
         loadTimers()
     }
     
     func deleteTimer(timerID: UUID) {
         repository.delete(id: timerID)
         loadTimers()
-
     }
     
     func workTimer() {
         let runningTimers = timers.filter { $0.status == .running }
         
         for timer in runningTimers {
-            timerWorkingUseCase.timerWork(id: timer.id)
+            let oldRemainingSeconds = timer.remainingSeconds
+            
+            timerWorkingUseCase.execute(id: timer.id)
+            
+            if oldRemainingSeconds == 1 {
+                notificationService.notifyTimerFinished()
+            }
         }
         
         loadTimers()
