@@ -37,7 +37,6 @@ struct TimerView: View {
                                 } label: {
                                     TimerRow(viewModel: viewModel, timer: timer)
                                 }
-
                             }
                             .cornerRadius(20)
                         }

@@ -14,7 +14,7 @@ class PauseTimerUseCase {
         self.repository = repository
     }
     
-    func pauseTimer(id: UUID) {
+    func execute(id: UUID) {
         repository.pauseTimer(id: id)
     }
 }

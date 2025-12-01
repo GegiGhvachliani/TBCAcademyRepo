@@ -7,7 +7,8 @@
 
 extension TimerViewModel {
     static func makeTimerViewModel() -> TimerViewModel {
-        let repository: TimerRepositoryProtocol = TimerRepository()
+        let storage: TimerStorageProtocol = TimerStorage()
+        let repository: TimerRepositoryProtocol = TimerRepository(storage: storage)
         
         let addTimerUseCase: AddTimerUseCase = AddTimerUseCase(repository: repository)
         let pauseTimerUseCase: PauseTimerUseCase = PauseTimerUseCase(repository: repository)
@@ -16,13 +17,14 @@ extension TimerViewModel {
         let timerWorkginPrincipleUseCase: TimerWorkingPrincipleUseCase = TimerWorkingPrincipleUseCase(repository: repository)
         let saveSessionUseCase = SaveSessionUseCase(repository: repository)
         
-        let viewModel = TimerViewModel(repository: repository,
-                                       addTimerUsecase: addTimerUseCase,
-                                       startTimerUseCase: startTimerUseCase,
-                                       pauseTimerUseCase: pauseTimerUseCase,
-                                       restartTimerUseCase: restartTimerUseCase,
-                                       timerWorkingUseCase: timerWorkginPrincipleUseCase,
-                                       saveSessionUseCase: saveSessionUseCase
+        let viewModel = TimerViewModel(
+            repository: repository,
+            addTimerUsecase: addTimerUseCase,
+            startTimerUseCase: startTimerUseCase,
+            pauseTimerUseCase: pauseTimerUseCase,
+            restartTimerUseCase: restartTimerUseCase,
+            timerWorkingUseCase: timerWorkginPrincipleUseCase,
+            saveSessionUseCase: saveSessionUseCase
         )
         
         return viewModel

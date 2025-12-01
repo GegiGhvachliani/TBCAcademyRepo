@@ -14,7 +14,7 @@ class TimerWorkingPrincipleUseCase {
         self.repository = repository
     }
     
-    func timerWork(id: UUID) {
+    func execute(id: UUID) {
         repository.timerWork(id: id)
     }
 }

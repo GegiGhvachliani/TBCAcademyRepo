@@ -14,7 +14,7 @@ class SaveSessionUseCase {
         self.repository = repository
     }
     
-    func saveSession(id: UUID) {
+    func execute(id: UUID) {
         repository.saveSession(id: id)
     }
 }

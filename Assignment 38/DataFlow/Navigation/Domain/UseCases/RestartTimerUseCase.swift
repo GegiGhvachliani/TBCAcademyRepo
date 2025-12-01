@@ -14,7 +14,7 @@ class RestartTimerUseCase {
         self.repository = repository
     }
     
-    func restartTimer(id: UUID) {
+    func execute(id: UUID) {
         repository.restartTimer(id: id)
     }
 }

@@ -22,7 +22,15 @@ class TimerViewModel: ObservableObject {
     
     private var ticker: Timer?
 
-    init(repository: TimerRepositoryProtocol, addTimerUsecase: AddTimerUseCase, startTimerUseCase: StartTimerUseCase, pauseTimerUseCase: PauseTimerUseCase, restartTimerUseCase: RestartTimerUseCase, timerWorkingUseCase: TimerWorkingPrincipleUseCase, saveSessionUseCase: SaveSessionUseCase) {
+    init(
+        repository: TimerRepositoryProtocol,
+        addTimerUsecase: AddTimerUseCase,
+        startTimerUseCase: StartTimerUseCase,
+        pauseTimerUseCase: PauseTimerUseCase,
+        restartTimerUseCase: RestartTimerUseCase,
+        timerWorkingUseCase: TimerWorkingPrincipleUseCase,
+        saveSessionUseCase: SaveSessionUseCase
+    ) {
         self.repository = repository
         self.addTimerUsecase = addTimerUsecase
         self.startTimerUseCase = startTimerUseCase
@@ -41,7 +49,7 @@ class TimerViewModel: ObservableObject {
     
     func addTimer(title: String, hours: Int, minutes: Int, seconds: Int)
     {
-        let result = addTimerUsecase.addTimer(title: title, hours: hours, minutes: minutes, seconds: seconds)
+        let result = addTimerUsecase.execute(title: title, hours: hours, minutes: minutes, seconds: seconds)
         
         switch result {
         case .success:
@@ -52,19 +60,19 @@ class TimerViewModel: ObservableObject {
     }
     
     func startTimer(timerID: UUID) {
-        startTimerUseCase.startTimer(id: timerID)
+        startTimerUseCase.execute(id: timerID)
         loadTimers()
     }
     
     func pauseTimer(timerID: UUID) {
-        pauseTimerUseCase.pauseTimer(id: timerID)
+        pauseTimerUseCase.execute(id: timerID)
         loadTimers()
 
     }
     
     func restartTimer(timerID: UUID) {
-        saveSessionUseCase.saveSession(id: timerID)
-        restartTimerUseCase.restartTimer(id: timerID)
+        saveSessionUseCase.execute(id: timerID)
+        restartTimerUseCase.execute(id: timerID)
         loadTimers()
     }
     
@@ -78,7 +86,7 @@ class TimerViewModel: ObservableObject {
         let runningTimers = timers.filter { $0.status == .running }
         
         for timer in runningTimers {
-            timerWorkingUseCase.timerWork(id: timer.id)
+            timerWorkingUseCase.execute(id: timer.id)
         }
         
         loadTimers()

@@ -18,7 +18,7 @@ class StartTimerUseCase {
         self.repository = repository
     }
     
-    func startTimer(id: UUID) {
+    func execute(id: UUID) {
         repository.startTimer(id: id)
     }
 }
