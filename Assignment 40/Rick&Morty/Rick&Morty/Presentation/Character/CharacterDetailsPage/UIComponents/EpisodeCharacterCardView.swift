@@ -22,7 +22,7 @@ struct EpisodeCharacterCardView: View {
                     image
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 60, height: 60)
+                        .frame(width: 50, height: 50)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 case .failure:
                     Image(systemName: "person.fill")
@@ -39,11 +39,19 @@ struct EpisodeCharacterCardView: View {
             }
             
             Text(name)
-                .font(.caption)
-                .lineLimit(2)
+                .font(.custom("SpecialElite-Regular", size: 12))
+                .foregroundStyle(.valueBrown)
                 .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.5)
                 .lineLimit(2)
                 .frame(width: 60, height: 40)
         }
     }
+}
+
+#Preview {
+    CharactersView(
+        viewModel: DependencyContainer.shared.makeCharactersViewModel(),
+        coordinator: DependencyContainer.shared.makeCharacterCoordinator()
+    )
 }

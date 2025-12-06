@@ -14,6 +14,8 @@ struct EpisodesView: View {
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             ZStack {
+                Color.background
+                    .ignoresSafeArea()
                 VStack {
                     if viewModel.isLoading && viewModel.episodes.isEmpty {
                         Spacer()
@@ -28,7 +30,7 @@ struct EpisodesView: View {
                         ScrollView {
                             LazyVStack(spacing: 5) {
                                 ForEach(viewModel.episodes, id: \.id) { episode in
-                                    EpisodeRow(episode: episode)
+                                    EpisodeRowWithImage(episode: episode)
                                         .onTapGesture {
                                             coordinator.navigateToEpisodeDetails(episode)
                                         }
@@ -41,19 +43,30 @@ struct EpisodesView: View {
                                         }
                                 }
                             }
-                            .padding(.horizontal, 10)
+                            .padding(.horizontal, 15)
+                            .padding(.top, 40)
                         }
                     }
                 }
                 .navigationDestination(for: Episode.self, destination: { episode in
                     EpisodeDetailsView(viewModel: DependencyContainer.shared.makeEpisodeDetailsViewModel(episode: episode))
                 })
-                .navigationTitle("Episodes")
+                .navigationBarTitleDisplayMode(.large)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                            Image("Episodes")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .padding(.top, 60)
+                    }
+                    
+                }
             }
             .task {
                 await viewModel.getInitialEpisodes()
             }
         }
+        
     }
 }
 

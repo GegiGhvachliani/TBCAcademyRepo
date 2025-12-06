@@ -41,15 +41,16 @@ struct CharacterComponentView: View {
                 .padding(.horizontal, 5)
                 .padding(.vertical, 3)
                 .frame(width: 170, height: 23)
-                .foregroundStyle(.white)
-                .font(.caption)
+                .foregroundStyle(.labelBrown)
+                .font(.custom("Creepster-Regular", size: 20))
                 .bold()
-                .background(.green.opacity(0.8))
+                .background(.backgroundContrasGreen.opacity(0.8))
             
             
         }
         .clipped()
         .cornerRadius(12)
+        .shadow(color: .characterShadowGreen, radius: 5)
     }
 }
 

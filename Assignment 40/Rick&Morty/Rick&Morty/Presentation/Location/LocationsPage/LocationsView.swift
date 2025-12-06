@@ -14,6 +14,8 @@ struct LocationsView: View {
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             ZStack {
+                Color.background
+                    .ignoresSafeArea()
                 if viewModel.isLoading && viewModel.locations.isEmpty {
                     Spacer()
                     ProgressView("Loading Locations")
@@ -41,20 +43,28 @@ struct LocationsView: View {
                                     }
                             }
                         }
+                        .padding(.top, 40)
                     }
                 }
             }
             .task {
                 await viewModel.getInitialLocations()
             }
-            .navigationTitle("Locations")
-            .navigationDestination(for: Location.self) { location in
-                            LocationDetailsView(
-                                viewModel: DependencyContainer.shared.makeLocationDetailsViewModel(
-                                    location: location
-                                )
-                            )
-                        }
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image("Locations")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.top, 60)
+                }
+            }            .navigationDestination(for: Location.self) { location in
+                LocationDetailsView(
+                    viewModel: DependencyContainer.shared.makeLocationDetailsViewModel(
+                        location: location
+                    )
+                )
+            }
         }
     }
 }

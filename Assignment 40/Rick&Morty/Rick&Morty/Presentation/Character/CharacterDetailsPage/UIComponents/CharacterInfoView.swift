@@ -22,7 +22,7 @@ struct CharacterInfoView: View {
                             .scaledToFill()
                             .frame(width: 300, height: 300)
                             .clipShape(Circle())
-                            .shadow(color: .green, radius: 10)
+                            .shadow(color: .characterShadowGreen, radius: 15)
                     case .failure:
                         Image(systemName: "person.fill")
                             .resizable()
@@ -36,8 +36,12 @@ struct CharacterInfoView: View {
                 }
                 
                 Text(viewModel.character.name)
-                    .font(.largeTitle)
+                    .font(.custom("GetSchwifty-Regular", size: 50))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
+                    .foregroundStyle(.backgroundContrasGreen)
                     .bold()
+                    .padding(.horizontal)
             }
             .frame(maxWidth: .infinity)
             .padding(.top)
@@ -50,7 +54,7 @@ struct CharacterInfoView: View {
                 DetailRow(label: "Species: ", value: character.species)
                 DetailRow(label: "Origin: ", value: character.origin.name)
             }
-            .padding(.horizontal)
+            .padding()
     }
 }
 
@@ -61,12 +65,20 @@ struct DetailRow: View {
     var body: some View {
         HStack {
             Text(label)
-                .foregroundColor(.gray)
+                .foregroundColor(.valueBrown.opacity(0.5))
                 .frame(width: 70, alignment: .leading)
-                .font(.footnote)
+                .font(.custom("Creepster-Regular", size: 20))
             Text(value)
-                .font(.headline)
+                .foregroundStyle(.titleBrown.opacity(1))
+                .font(.custom("Creepster-Regular", size: 25))
                 .bold()
         }
     }
+}
+
+#Preview {
+    CharactersView(
+        viewModel: DependencyContainer.shared.makeCharactersViewModel(),
+        coordinator: DependencyContainer.shared.makeCharacterCoordinator()
+    )
 }

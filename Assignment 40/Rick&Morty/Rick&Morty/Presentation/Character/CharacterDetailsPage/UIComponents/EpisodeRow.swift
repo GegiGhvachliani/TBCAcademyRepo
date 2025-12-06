@@ -13,21 +13,23 @@ struct EpisodeRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(episode.name)
-                .foregroundStyle(.green)
-                .font(.title2)
+                .foregroundStyle(.characterShadowGreen)
+                .font(.custom("Creepster-Regular", size: 30))
+                .minimumScaleFactor(0.5) 
                 .bold()
             HStack {
                 Text(episode.episode)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                    .font(.custom("Creepster-Regular", size: 20))
+                    .foregroundColor(.titleBrown.opacity(1))
                 Spacer()
                 Text(episode.airDate)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                    .font(.custom("Creepster-Regular", size: 15))
+                    .foregroundColor(.valueBrown.opacity(0.5))
             }
         }
+        .frame(height: 65)
         .padding()
-        .background(Color.gray.opacity(0.15))
-        .cornerRadius(8)
+        .background(Color.cell.opacity(0.3))
+        .cornerRadius(10)
     }
 }

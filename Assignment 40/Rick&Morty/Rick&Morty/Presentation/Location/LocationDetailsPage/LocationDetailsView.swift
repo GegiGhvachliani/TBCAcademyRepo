@@ -25,50 +25,54 @@ struct LocationDetailsView: View {
     ]
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(viewModel.location.name)
-                        .font(.title)
-                        .bold()
+        ZStack {
+            Color.background
+                .ignoresSafeArea()
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(viewModel.location.name)
+                            .font(.title)
+                            .bold()
+                        
+                        Text("Dimension: \(viewModel.location.dimension)")
+                            .font(.subheadline)
+                    }
+                    .padding(.horizontal)
                     
-                    Text("Dimension: \(viewModel.location.dimension)")
-                        .font(.subheadline)
-                }
-                .padding(.horizontal)
-                
-                VStack {
-                    Text("Residents")
-                        .font(.title2)
-                        .bold()
-                        .padding(.horizontal)
-                    
-                    if viewModel.isLoading && viewModel.characters.isEmpty {
-                        Spacer()
-                        ProgressView("Loading residents...")
-                        Spacer()
-                    } else if let error = viewModel.errorMessage {
-                        Text("Error: \(error)")
-                            .foregroundColor(.red)
+                    VStack {
+                        Text("Residents")
+                            .font(.title2)
+                            .bold()
                             .padding(.horizontal)
-                    } else {
-                        LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(viewModel.characters, id: \.id) { character in
-                                CharacterComponentView(
-                                    name: character.name,
-                                    imageURL: character.image
-                                )
+                        
+                        if viewModel.isLoading && viewModel.characters.isEmpty {
+                            Spacer()
+                            ProgressView("Loading residents...")
+                            Spacer()
+                        } else if let error = viewModel.errorMessage {
+                            Text("Error: \(error)")
+                                .foregroundColor(.red)
+                                .padding(.horizontal)
+                        } else {
+                            LazyVGrid(columns: columns, spacing: 20) {
+                                ForEach(viewModel.characters, id: \.id) { character in
+                                    CharacterComponentView(
+                                        name: character.name,
+                                        imageURL: character.image
+                                    )
+                                }
                             }
+                            .padding(.horizontal, 10)
                         }
-                        .padding(.horizontal, 10)
                     }
                 }
+                .task {
+                    await viewModel.getResidents()
+                }
             }
-            .task {
-                await viewModel.getResidents()
-            }
+            .navigationTitle("Details")
         }
-        .navigationTitle("Details")
     }
 }
 

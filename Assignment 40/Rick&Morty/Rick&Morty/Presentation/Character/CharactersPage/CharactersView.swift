@@ -21,6 +21,8 @@ struct CharactersView: View {
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             ZStack {
+                Color.background
+                    .ignoresSafeArea()
                 VStack {
                     if viewModel.isLoading && viewModel.characters.isEmpty {
                         ProgressView("Loading characters...")
@@ -50,10 +52,20 @@ struct CharactersView: View {
                                 }
                             })
                             .padding(.horizontal, 15)
+                            .padding(.top, 20)
                         }
                     }
                 }
-                .navigationTitle("Characters")
+                .navigationBarTitleDisplayMode(.large)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                            Image("Characters")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .padding(.top, 50)
+                    }
+                    
+                }
                 .navigationDestination(for: Character.self) { character in
                     CharacterDetailsView(
                         viewModel: DependencyContainer.shared.makeCharacterDetailsViewModel(

@@ -1,34 +1,32 @@
 //
-//  LocationRow.swift
+//  EpisodeRowWithImage.swift
 //  Rick&Morty
 //
-//  Created by Gegi Ghvachliani on 05.12.25.
+//  Created by Gegi Ghvachliani on 06.12.25.
 //
 
 import SwiftUI
 
-import SwiftUI
-
-struct LocationRow: View {
-    let location: Location
+struct EpisodeRowWithImage: View {
+    let episode: Episode
     
     var body: some View {
         ZStack {
-            Image("LocationRowBackground")
+            Image("EpisodesRowBackground")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(maxWidth: .infinity)
                 .frame(height: 100)
                 .cornerRadius(15)
-                .opacity(0.8)
+                .opacity(0.6)
                 .clipped()
             VStack(alignment: .leading, spacing: 4) {
-                Text(location.name)
+                Text(episode.name)
                     .foregroundStyle(.characterShadowGreen)
                     .font(.custom("Creepster-Regular", size: 30))
                     .minimumScaleFactor(0.5)
                     .bold()
-                Text(location.dimension)
+                Text(episode.episode)
                     .font(.custom("Creepster-Regular", size: 20))
                     .foregroundColor(.titleBrown.opacity(1))
                     .lineLimit(2)
@@ -47,8 +45,6 @@ struct LocationRow: View {
 }
 
 #Preview {
-    let location = Location(id: 1, name: "dedamiwa", dimension: "C-114 GPA", residents: [], url: "123")
-    
-    LocationRow(location: location)
+    let episode = Episode(id: 1, name: "episode", airDate: "25:25:25", episode: "S01S10", characters: [], url: "asd")
+    EpisodeRowWithImage(episode: episode)
 }
-
