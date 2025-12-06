@@ -103,16 +103,16 @@ class SearchViewModel: ObservableObject {
     }
     
     private var searchTask: Task<Void, Never>?
+    
+    func onSearchTextChange(_ newText: String) {
+        searchTask?.cancel()
         
-        func onSearchTextChange(_ newText: String) {
-            searchTask?.cancel()
+        searchTask = Task {
+            try? await Task.sleep(nanoseconds: 500_000_000)
             
-            searchTask = Task {
-                try? await Task.sleep(nanoseconds: 500_000_000)
-                
-                guard !Task.isCancelled else { return }
-                
-                await search()
-            }
+            guard !Task.isCancelled else { return }
+            
+            await search()
         }
+    }
 }

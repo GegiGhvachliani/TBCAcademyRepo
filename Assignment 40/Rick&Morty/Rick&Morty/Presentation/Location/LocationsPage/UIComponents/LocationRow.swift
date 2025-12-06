@@ -48,7 +48,6 @@ struct LocationRow: View {
 
 #Preview {
     let location = Location(id: 1, name: "dedamiwa", dimension: "C-114 GPA", residents: [], url: "123")
-    
     LocationRow(location: location)
 }
 

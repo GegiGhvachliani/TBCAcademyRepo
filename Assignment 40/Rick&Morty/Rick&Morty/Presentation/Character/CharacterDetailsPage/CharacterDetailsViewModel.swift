@@ -49,19 +49,19 @@ class CharacterDetailsViewModel: ObservableObject {
     }
     
     func loadCharacters(for episode: Episode) async {
-            guard !loadingEpisodes.contains(episode.id),
-                  episodeCharacters[episode.id] == nil else { return }
-            
-            loadingEpisodes.insert(episode.id)
-            episodeErrors[episode.id] = nil
-            
-            do {
-                let characters = try await getCharactersForEpisodeUseCase.execute(characterURLs: episode.characters)
-                episodeCharacters[episode.id] = characters
-            } catch {
-                episodeErrors[episode.id] = "Failed to load characters: \(error.localizedDescription)"
-            }
-            
-            loadingEpisodes.remove(episode.id)
+        guard !loadingEpisodes.contains(episode.id),
+              episodeCharacters[episode.id] == nil else { return }
+        
+        loadingEpisodes.insert(episode.id)
+        episodeErrors[episode.id] = nil
+        
+        do {
+            let characters = try await getCharactersForEpisodeUseCase.execute(characterURLs: episode.characters)
+            episodeCharacters[episode.id] = characters
+        } catch {
+            episodeErrors[episode.id] = "Failed to load characters: \(error.localizedDescription)"
         }
+        
+        loadingEpisodes.remove(episode.id)
+    }
 }
