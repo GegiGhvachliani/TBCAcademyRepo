@@ -20,12 +20,6 @@ class AppCoordinator: ObservableObject {
     }
     
     init() {
-        for family in UIFont.familyNames.sorted() {
-            print("Family: \(family)")
-            for name in UIFont.fontNames(forFamilyName: family) {
-                print("  - \(name)")
-            }
-        }
         charactersCoordinator = DependencyContainer.shared.makeCharacterCoordinator()
         episodesCoordinator = DependencyContainer.shared.makeEpisodesCoordinator()
         locationsCoordinator = DependencyContainer.shared.makeLocationsCoordinator()
