@@ -9,6 +9,6 @@ struct ListModel {
     var participants: [String]
     
     init() {
-    participants = []
+    participants = ["Vaso", "Salome", "Elene", "Akaki"]
     }
 }
