@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject private var coordinator = AppCoordinator()
-    @StateObject private var viewModel: MainViewModel = MainViewModel()
+    @StateObject private var viewModel = MainViewModel()
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             ZStack {

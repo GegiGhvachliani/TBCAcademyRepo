@@ -8,22 +8,36 @@
 import Foundation
 import Combine
 
-final class DetailsViewModel: ObservableObject {
-    private var audioManager = AudioManager()
-    private var cancellable: AnyCancellable?
+protocol DetailsViewModelProtocol {
+    func loadMusic(_ music: Music)
+    func togglePlayPause()
+    func skipForward()
+    func skipBackward()
+}
+
+final class DetailsViewModel: DetailsViewModelProtocol, ObservableObject {
     
-    var isPlaying: Bool { audioManager.isPlaying }
-    var currentTime: TimeInterval { audioManager.currentTime }
-    var duration: TimeInterval { audioManager.duration }
+    private var audioManager: AudioManagerProtocol
+    
+    @Published var isPlaying: Bool = false
+    @Published var currentTime: TimeInterval = 0
+    @Published var duration: TimeInterval = 0
     
     var progress: Float {
         guard duration > 0 else { return 0 }
         return Float(currentTime / duration)
     }
     
-    init() {
-        cancellable = audioManager.objectWillChange.sink { [weak self] _ in
-            self?.objectWillChange.send()
+    init(audioManager: AudioManagerProtocol = AudioManager()) {
+        self.audioManager = audioManager
+        setupBindings()
+    }
+    
+    private func setupBindings() {
+        audioManager.onStateChange = { [weak self] isPlaying, currentTime, duration in
+            self?.isPlaying = isPlaying
+            self?.currentTime = currentTime
+            self?.duration = duration
         }
     }
     

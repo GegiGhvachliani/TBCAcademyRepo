@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ControllerButtonsView: View {
-    var viewModel: DetailsViewModel
+    @ObservedObject var viewModel: DetailsViewModel
     var body: some View {
         HStack(spacing: 30) {
             Button {
@@ -38,3 +38,4 @@ struct ControllerButtonsView: View {
 
     }
 }
+
