@@ -16,7 +16,7 @@ protocol AudioManagerProtocol {
     func skipBackward()
 }
 
-class AudioManager: AudioManagerProtocol {
+final class AudioManager: AudioManagerProtocol {
     
     var onStateChange: ((Bool, TimeInterval, TimeInterval) -> Void)?
     

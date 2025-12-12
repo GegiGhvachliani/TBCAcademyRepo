@@ -11,6 +11,7 @@ protocol MainViewModelProtocol {
     var musics: [Music] { get }
     func loadMusics()
 }
+
 final class MainViewModel: ObservableObject, MainViewModelProtocol {
     @Published var musics: [Music] = []
     
