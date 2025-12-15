@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimerRow: View {
     @ObservedObject var viewModel: TimerViewModel
+    @State var showDeleteAlert: Bool = false
     var timer: TimerModel
     
     var body: some View {
@@ -22,15 +23,21 @@ struct TimerRow: View {
                 Spacer()
                 
                 Button {
-                    viewModel.deleteTimer(id: timer.id)
+                    showDeleteAlert = true
                 } label: {
                     Image(systemName: "trash")
                         .foregroundStyle(.red)
                         .offset(x: 0, y: -6)
                 }
+                .alert("Delete Timer?", isPresented: $showDeleteAlert) {
+                    Button("Cancel", role: .cancel) {}
+                    Button("Delete", role: .destructive) {
+                        viewModel.deleteTimer(timerID: timer.id)
+                    }
+                }
             }
             
-            Text(formatTime(timer.remainingSeconds))
+            Text(TimeFormatter.formatTime(timer.remainingSeconds))
                 .font(.system(size: 40, weight: .bold))
                 .foregroundColor(.timerTime)
                 .padding(.top, 5)
@@ -38,13 +45,13 @@ struct TimerRow: View {
             HStack {
                 Button {
                     if timer.status == .running {
-                        viewModel.pauseTimer(timer: timer)
+                        viewModel.pauseTimer(timerID: timer.id)
                     } else {
-                        viewModel.startTimer(timer: timer)
+                        viewModel.startTimer(timerID: timer.id)
                     }
                 } label: {
                     Text(timer.status == .running ? "პაუზა" : "დაწყება")
-                        .padding(.horizontal, 17)
+                        .padding(.horizontal, 20)
                         .padding(.vertical, 10)
                         .background(timer.status == .running ? .pauseButton : .startButton)
                         .foregroundColor(.white)
@@ -52,7 +59,7 @@ struct TimerRow: View {
                 }
                 
                 Button {
-                    viewModel.restartTimer(timer: timer)
+                    viewModel.restartTimer(timerID: timer.id)
                 } label: {
                     Text("გადატვირთვა")
                 }
@@ -71,14 +78,10 @@ struct TimerRow: View {
     }
 }
 
-func formatTime(_ seconds: Int) -> String {
-    let h = seconds / 3600
-    let m = (seconds % 3600) / 60
-    let s = seconds % 60
-    return String(format: "%02d:%02d:%02d", h, m, s)
-}
-
-
 #Preview {
-    TimerView()
+    let viewModel = TimerViewModel.makeTimerViewModel()
+    TimerRow(
+        viewModel: viewModel,
+        showDeleteAlert: false,
+        timer: TimerModel(title: "ვარჯიში", time: 3312))
 }

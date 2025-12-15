@@ -1,13 +1,13 @@
 //
-//  AddTimerUseCase.swift
-//  DataFlow
+//  SaveSessionUseCase.swift
+//  Navigation
 //
-//  Created by Gegi Ghvachliani on 25.11.25.
+//  Created by Gegi Ghvachliani on 29.11.25.
 //
 
 import Foundation
 
-class PauseTimerUseCase {
+class SaveSessionUseCase {
     private let repository: TimerRepositoryProtocol
     
     init(repository: TimerRepositoryProtocol) {
@@ -15,6 +15,6 @@ class PauseTimerUseCase {
     }
     
     func execute(id: UUID) {
-        repository.pauseTimer(id: id)
+        repository.saveSession(id: id)
     }
 }

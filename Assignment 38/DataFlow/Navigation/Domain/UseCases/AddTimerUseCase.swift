@@ -19,7 +19,7 @@ class AddTimerUseCase {
         self.repository = repository
     }
     
-    func addTimer(title: String, hours: Int, minutes: Int, seconds: Int) -> Result<TimerModel, TimerErrors> {
+    func execute(title: String, hours: Int, minutes: Int, seconds: Int) -> Result<TimerModel, TimerErrors> {
         if title.isEmpty { return .failure(.titleIsEmpty)}
         
         let timeInSeconds = hours * 3600 + minutes * 60 + seconds

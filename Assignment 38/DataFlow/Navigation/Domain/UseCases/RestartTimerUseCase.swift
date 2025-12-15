@@ -5,16 +5,16 @@
 //  Created by Gegi Ghvachliani on 25.11.25.
 //
 
-class RestartTimerUseCase {
+import Foundation
 
-    func restartTimer(timer: TimerModel) -> TimerModel {
-        guard timer.status != .restarted else { return timer}
-        
-        var restartedTimer = timer
-        
-        restartedTimer.status = .restarted
-        restartedTimer.remainingSeconds = restartedTimer.time
-        
-        return restartedTimer
+class RestartTimerUseCase {
+    private let repository: TimerRepositoryProtocol
+    
+    init(repository: TimerRepositoryProtocol) {
+        self.repository = repository
+    }
+    
+    func execute(id: UUID) {
+        repository.restartTimer(id: id)
     }
 }

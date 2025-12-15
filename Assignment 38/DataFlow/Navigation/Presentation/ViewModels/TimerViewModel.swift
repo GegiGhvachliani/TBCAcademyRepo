@@ -18,16 +18,26 @@ class TimerViewModel: ObservableObject {
     private let pauseTimerUseCase: PauseTimerUseCase
     private let restartTimerUseCase: RestartTimerUseCase
     private let timerWorkingUseCase: TimerWorkingPrincipleUseCase
+    private let saveSessionUseCase: SaveSessionUseCase
     
     private var ticker: Timer?
 
-    init(repository: TimerRepositoryProtocol, addTimerUsecase: AddTimerUseCase, startTimerUseCase: StartTimerUseCase, pauseTimerUseCase: PauseTimerUseCase, restartTimerUseCase: RestartTimerUseCase, timerWorkingUseCase: TimerWorkingPrincipleUseCase) {
+    init(
+        repository: TimerRepositoryProtocol,
+        addTimerUsecase: AddTimerUseCase,
+        startTimerUseCase: StartTimerUseCase,
+        pauseTimerUseCase: PauseTimerUseCase,
+        restartTimerUseCase: RestartTimerUseCase,
+        timerWorkingUseCase: TimerWorkingPrincipleUseCase,
+        saveSessionUseCase: SaveSessionUseCase
+    ) {
         self.repository = repository
         self.addTimerUsecase = addTimerUsecase
         self.startTimerUseCase = startTimerUseCase
         self.pauseTimerUseCase = pauseTimerUseCase
         self.restartTimerUseCase = restartTimerUseCase
         self.timerWorkingUseCase = timerWorkingUseCase
+        self.saveSessionUseCase = saveSessionUseCase
         
         loadTimers()
         startTicking()
@@ -39,58 +49,47 @@ class TimerViewModel: ObservableObject {
     
     func addTimer(title: String, hours: Int, minutes: Int, seconds: Int)
     {
-        let result = addTimerUsecase.addTimer(title: title, hours: hours, minutes: minutes, seconds: seconds)
+        let result = addTimerUsecase.execute(title: title, hours: hours, minutes: minutes, seconds: seconds)
         
         switch result {
-            
-        case .success(let timer):
-            timers.append(timer)
+        case .success:
+            loadTimers()
         case .failure(let error):
             print("error: \(error)")
         }
     }
     
-    func startTimer(timer: TimerModel) {
-        let startedTimer = startTimerUseCase.startTimer(timer: timer)
-        repository.update(timer: startedTimer)
-        
-        if let index = timers.firstIndex(where: { $0.id == startedTimer.id }) {
-            timers[index] = startedTimer
-        }
+    func startTimer(timerID: UUID) {
+        startTimerUseCase.execute(id: timerID)
+        loadTimers()
     }
     
-    func pauseTimer(timer: TimerModel) {
-        let pausedTimer = pauseTimerUseCase.pauseTimer(timer: timer)
-        repository.update(timer: pausedTimer)
-        
-        if let index = timers.firstIndex(where: { $0.id == pausedTimer.id }) {
-            timers[index] = pausedTimer
-        }
+    func pauseTimer(timerID: UUID) {
+        pauseTimerUseCase.execute(id: timerID)
+        loadTimers()
+
     }
     
-    func restartTimer(timer: TimerModel) {
-        let restartedTimer = restartTimerUseCase.restartTimer(timer: timer)
-        repository.update(timer: restartedTimer)
-        
-        if let index = timers.firstIndex(where: { $0.id == restartedTimer.id }) {
-            timers[index] = restartedTimer
-        }
+    func restartTimer(timerID: UUID) {
+        saveSessionUseCase.execute(id: timerID)
+        restartTimerUseCase.execute(id: timerID)
+        loadTimers()
     }
     
-    func deleteTimer(id: UUID) {
-        repository.delete(id: id)
-        
-        timers.removeAll(where: { $0.id == id } )
+    func deleteTimer(timerID: UUID) {
+        repository.delete(id: timerID)
+        loadTimers()
+
     }
     
     func workTimer() {
-        for index in 0..<timers.count {
-            if timers[index].status == .running {
-                let updatedTimer = timerWorkingUseCase.timerWorkingPrinciple(timer: timers[index])
-                repository.update(timer: updatedTimer)
-                timers[index] = updatedTimer
-            }
+        let runningTimers = timers.filter { $0.status == .running }
+        
+        for timer in runningTimers {
+            timerWorkingUseCase.execute(id: timer.id)
         }
+        
+        loadTimers()
     }
     
     private func startTicking() {

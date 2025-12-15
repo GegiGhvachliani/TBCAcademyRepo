@@ -6,12 +6,13 @@
 //
 import Foundation
 
-struct TimerModel: Identifiable, Equatable, Codable {
+struct TimerModel: Identifiable, Equatable, Codable, Hashable {
     let id: UUID
     let title: String
     let time: Int
     var remainingSeconds: Int
     var status: Status
+    var sessions: [TimerSession]
     
     
     init(title: String, time: Int) {
@@ -20,12 +21,7 @@ struct TimerModel: Identifiable, Equatable, Codable {
         self.time = time
         self.remainingSeconds = time
         self.status = .restarted
-    }
-    
-    enum Status: Equatable, Codable {
-        case restarted
-        case running
-        case paused
+        self.sessions = []
     }
 }
 
