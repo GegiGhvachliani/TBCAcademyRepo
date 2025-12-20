@@ -23,7 +23,7 @@ class EpisodeRepository: EpisodeRepositoryProtocol {
     }
     
     func searchEpisodeByName(name: String) async throws -> EpisodeResponse {
-        let url = "\(baseUrl)/?episode=\(name)"
+        let url = "\(baseUrl)/?name=\(name)"
         return try await networkService.fetchData(from: url)
     }
     

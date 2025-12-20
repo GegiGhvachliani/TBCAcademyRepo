@@ -23,7 +23,7 @@ class LocationRepository: LocationRepositoryProtocol {
     }
     
     func searchLocationsByName(name: String) async throws -> LocationResponse {
-        let url = "\(baseURL)/?location=\(name)"
+        let url = "\(baseURL)/?name=\(name)"
         return try await networkService.fetchData(from: url)
     }
     
